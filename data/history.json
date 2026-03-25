@@ -1,0 +1,2001 @@
+[
+  {
+    "timestamp": "2025-04-20T08:11:46.728701",
+    "request": {
+      "project_description": "Desarrollo de aplicaci\u00f3n web con React y Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 3,
+        "devops": 1
+      },
+      "budget": 50000,
+      "criteria": {
+        "backend": {
+          "Node.js_exp": 0.7,
+          "ingles_avanzado": 1
+        },
+        "frontend": {
+          "React_exp": 0.8
+        }
+      }
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 59,
+          "nombre": "Olegario",
+          "apellido": "Gelabert",
+          "rol": "backend",
+          "salario": 0.3803945709648464,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "PostgreSQL",
+            "Docker",
+            "Git",
+            "Jenkins",
+            "TensorFlow"
+          ],
+          "puntaje": 1.6300000000000001,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 1.63)"
+        },
+        {
+          "id": 87,
+          "nombre": "Marcela",
+          "apellido": "Reig",
+          "rol": "backend",
+          "salario": 0.748321956813437,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "React",
+            "Node.js",
+            "Azure",
+            "Linux"
+          ],
+          "puntaje": 1.45,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 1.45)"
+        },
+        {
+          "id": 58,
+          "nombre": "Jose Manuel",
+          "apellido": "Verd\u00fa",
+          "rol": "frontend",
+          "salario": 0.6941499391165897,
+          "nivel": "SSR",
+          "tecnologias_principales": [
+            "Angular",
+            "Node.js",
+            "MySQL",
+            "Docker",
+            "Hibernate",
+            "Elasticsearch"
+          ],
+          "puntaje": 2.698611111111111,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 2.70)"
+        },
+        {
+          "id": 49,
+          "nombre": "Joan",
+          "apellido": "Naranjo",
+          "rol": "frontend",
+          "salario": 0.5225729816364955,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Angular",
+            "Git",
+            "TensorFlow",
+            "PyTorch",
+            "Pandas",
+            "RabbitMQ"
+          ],
+          "puntaje": 2.676388888888889,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 2.68)"
+        },
+        {
+          "id": 74,
+          "nombre": "Cristian",
+          "apellido": "Cueto",
+          "rol": "frontend",
+          "salario": 0.8968861468958996,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Node.js",
+            "MongoDB",
+            "PostgreSQL",
+            "Kubernetes",
+            "Spring",
+            "Hibernate"
+          ],
+          "puntaje": 1.6124999999999998,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 1.61)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.6327384912365233,
+      "presupuesto_restante": 49996.36726150876,
+      "promedio_puntaje": 2.2762499999999997
+    }
+  },
+  {
+    "timestamp": "2025-04-20T08:21:49.481969",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-20T08:22:51.501652",
+    "request": {
+      "project_description": "Desarrollo de aplicaci\u00f3n web con React y Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 3,
+        "devops": 1
+      },
+      "budget": 50000,
+      "criteria": {
+        "backend": {
+          "Node.js_exp": 0.7,
+          "ingles_avanzado": 1
+        },
+        "frontend": {
+          "React_exp": 0.8
+        }
+      }
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 59,
+          "nombre": "Olegario",
+          "apellido": "Gelabert",
+          "rol": "backend",
+          "salario": 0.3803945709648464,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "PostgreSQL",
+            "Docker",
+            "Git",
+            "Jenkins",
+            "TensorFlow"
+          ],
+          "puntaje": 1.6300000000000001,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 1.63)"
+        },
+        {
+          "id": 87,
+          "nombre": "Marcela",
+          "apellido": "Reig",
+          "rol": "backend",
+          "salario": 0.748321956813437,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "React",
+            "Node.js",
+            "Azure",
+            "Linux"
+          ],
+          "puntaje": 1.45,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 1.45)"
+        },
+        {
+          "id": 58,
+          "nombre": "Jose Manuel",
+          "apellido": "Verd\u00fa",
+          "rol": "frontend",
+          "salario": 0.6941499391165897,
+          "nivel": "SSR",
+          "tecnologias_principales": [
+            "Angular",
+            "Node.js",
+            "MySQL",
+            "Docker",
+            "Hibernate",
+            "Elasticsearch"
+          ],
+          "puntaje": 2.698611111111111,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 2.70)"
+        },
+        {
+          "id": 49,
+          "nombre": "Joan",
+          "apellido": "Naranjo",
+          "rol": "frontend",
+          "salario": 0.5225729816364955,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Angular",
+            "Git",
+            "TensorFlow",
+            "PyTorch",
+            "Pandas",
+            "RabbitMQ"
+          ],
+          "puntaje": 2.676388888888889,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 2.68)"
+        },
+        {
+          "id": 74,
+          "nombre": "Cristian",
+          "apellido": "Cueto",
+          "rol": "frontend",
+          "salario": 0.8968861468958996,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Node.js",
+            "MongoDB",
+            "PostgreSQL",
+            "Kubernetes",
+            "Spring",
+            "Hibernate"
+          ],
+          "puntaje": 1.6124999999999998,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 1.61)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.6327384912365233,
+      "presupuesto_restante": 49996.36726150876,
+      "promedio_puntaje": 2.2762499999999997
+    }
+  },
+  {
+    "timestamp": "2025-04-20T08:37:03.650059",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:50:34.137160",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:51:00.528967",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:51:15.965490",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:52:09.899460",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:52:19.606466",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:52:24.060028",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:53:20.502374",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T09:53:45.053099",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "backend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 4.44,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 4.44)"
+        },
+        {
+          "id": 60,
+          "nombre": "Aitana",
+          "apellido": "Plaza",
+          "rol": "backend",
+          "salario": 0.9320905939595822,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "Python",
+            "Kubernetes",
+            "Git",
+            "NumPy"
+          ],
+          "puntaje": 3.6799999999999997,
+          "seleccion_razon": "Mejor candidato para backend (Puntaje: 3.68)"
+        },
+        {
+          "id": 96,
+          "nombre": "Anastasio",
+          "apellido": "Bustos",
+          "rol": "frontend",
+          "salario": 0.8004892345681839,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "Node.js",
+            "PostgreSQL",
+            "TensorFlow",
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.9555555555555557,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.96)"
+        },
+        {
+          "id": 37,
+          "nombre": "Laura",
+          "apellido": "Girona",
+          "rol": "frontend",
+          "salario": 0.7630608915592171,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Flask",
+            "TypeScript"
+          ],
+          "puntaje": 3.1999999999999997,
+          "seleccion_razon": "Mejor candidato para frontend (Puntaje: 3.20)"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 3.5900000000000007,
+          "seleccion_razon": "Mejor candidato para devops (Puntaje: 3.59)"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 3.2764665116919787,
+      "presupuesto_restante": 49996.72353348831,
+      "promedio_puntaje": 3.773111111111111
+    }
+  },
+  {
+    "timestamp": "2025-04-24T10:32:40.908338",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 7,
+          "nombre": "Baldomero",
+          "apellido": "Bonilla",
+          "rol": "backend",
+          "salario": 0.7232480133352267,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "JavaScript",
+            "Vue",
+            "Elasticsearch",
+            "Linux"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, JavaScript, Vue, Elasticsearch, Linux"
+        },
+        {
+          "id": 9,
+          "nombre": "Am\u00e9rica",
+          "apellido": "Blanes",
+          "rol": "backend",
+          "salario": 0.70999375648127,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "MySQL",
+            "Hibernate",
+            "RabbitMQ"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, MySQL, Hibernate, RabbitMQ"
+        },
+        {
+          "id": 8,
+          "nombre": "Nidia",
+          "apellido": "Planas",
+          "rol": "frontend",
+          "salario": 0.5021602644158791,
+          "nivel": "SSR",
+          "tecnologias_principales": [
+            "Git",
+            "TensorFlow",
+            "Spring"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Git, TensorFlow, Spring"
+        },
+        {
+          "id": 9,
+          "nombre": "Am\u00e9rica",
+          "apellido": "Blanes",
+          "rol": "frontend",
+          "salario": 0.70999375648127,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "MySQL",
+            "Hibernate",
+            "RabbitMQ"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, MySQL, Hibernate, RabbitMQ"
+        },
+        {
+          "id": 5,
+          "nombre": "Olga",
+          "apellido": "Vilaplana",
+          "rol": "devops",
+          "salario": 0.06499475256611048,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Node.js",
+            "PostgreSQL",
+            "MySQL",
+            "Kubernetes",
+            "AWS",
+            "TensorFlow",
+            "PyTorch",
+            "TypeScript"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para devops (Puntaje: 0.00). Tecnolog\u00edas principales: Node.js, PostgreSQL, MySQL, Kubernetes, AWS, TensorFlow, PyTorch, TypeScript"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 2.7103905432741158,
+      "presupuesto_restante": 49997.289609456726,
+      "promedio_puntaje": 0.0,
+      "cobertura_tecnologias": {},
+      "analisis_equipo": "An\u00e1lisis del equipo:\n- Backend (2): Baldomero Bonilla, Am\u00e9rica Blanes\n- Frontend (2): Nidia Planas, Am\u00e9rica Blanes\n- Devops (1): Olga Vilaplana\n\nTecnolog\u00edas principales del equipo:\n  Java: 3 miembros\n  MySQL: 3 miembros\n  Hibernate: 2 miembros\n  RabbitMQ: 2 miembros\n  TensorFlow: 2 miembros\n  JavaScript: 1 miembros\n  Vue: 1 miembros\n  Elasticsearch: 1 miembros\n  Linux: 1 miembros\n  Git: 1 miembros\n  Spring: 1 miembros\n  Node.js: 1 miembros\n  PostgreSQL: 1 miembros\n  Kubernetes: 1 miembros\n  AWS: 1 miembros\n  PyTorch: 1 miembros\n  TypeScript: 1 miembros"
+    }
+  },
+  {
+    "timestamp": "2025-04-24T10:33:01.802493",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 3,
+          "nombre": "Jenaro",
+          "apellido": "Llanos",
+          "rol": "backend",
+          "salario": 0.5552831421006484,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "AWS",
+            "Jenkins",
+            "Pandas",
+            "Flask",
+            "Elasticsearch"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: AWS, Jenkins, Pandas, Flask, Elasticsearch"
+        },
+        {
+          "id": 8,
+          "nombre": "Nidia",
+          "apellido": "Planas",
+          "rol": "backend",
+          "salario": 0.5021602644158791,
+          "nivel": "SSR",
+          "tecnologias_principales": [
+            "Git",
+            "TensorFlow",
+            "Spring"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: Git, TensorFlow, Spring"
+        },
+        {
+          "id": 1,
+          "nombre": "Mar\u00eda Carmen",
+          "apellido": "Casas",
+          "rol": "frontend",
+          "salario": 0.6410838443361264,
+          "nivel": "SR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "PyTorch",
+            "Pandas"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: JavaScript, PyTorch, Pandas"
+        },
+        {
+          "id": 6,
+          "nombre": "Maxi",
+          "apellido": "Elorza",
+          "rol": "frontend",
+          "salario": 0.03224384711718825,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Vue",
+            "Node.js",
+            "Azure",
+            "Git"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Vue, Node.js, Azure, Git"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "devops",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para devops (Puntaje: 0.00). Tecnolog\u00edas principales: Python, Java, Vue, PostgreSQL, PyTorch, GraphQL, Redis"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 2.1211839937750483,
+      "presupuesto_restante": 49997.878816006225,
+      "promedio_puntaje": 0.0,
+      "cobertura_tecnologias": {},
+      "analisis_equipo": "An\u00e1lisis del equipo:\n- Backend (2): Jenaro Llanos, Nidia Planas\n- Frontend (2): Mar\u00eda Carmen Casas, Maxi Elorza\n- Devops (1): Isabel Gallardo\n\nTecnolog\u00edas principales del equipo:\n  Pandas: 2 miembros\n  Git: 2 miembros\n  PyTorch: 2 miembros\n  Vue: 2 miembros\n  AWS: 1 miembros\n  Jenkins: 1 miembros\n  Flask: 1 miembros\n  Elasticsearch: 1 miembros\n  TensorFlow: 1 miembros\n  Spring: 1 miembros\n  JavaScript: 1 miembros\n  Node.js: 1 miembros\n  Azure: 1 miembros\n  Python: 1 miembros\n  Java: 1 miembros\n  PostgreSQL: 1 miembros\n  GraphQL: 1 miembros\n  Redis: 1 miembros"
+    }
+  },
+  {
+    "timestamp": "2025-04-24T10:34:20.234322",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 7,
+          "nombre": "Baldomero",
+          "apellido": "Bonilla",
+          "rol": "backend",
+          "salario": 0.7232480133352267,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "JavaScript",
+            "Vue",
+            "Elasticsearch",
+            "Linux"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, JavaScript, Vue, Elasticsearch, Linux"
+        },
+        {
+          "id": 2,
+          "nombre": "Reyes",
+          "apellido": "Cerro",
+          "rol": "backend",
+          "salario": 0.19988007103844746,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "PostgreSQL",
+            "NumPy",
+            "Hibernate"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: JavaScript, PostgreSQL, NumPy, Hibernate"
+        },
+        {
+          "id": 7,
+          "nombre": "Baldomero",
+          "apellido": "Bonilla",
+          "rol": "frontend",
+          "salario": 0.7232480133352267,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "JavaScript",
+            "Vue",
+            "Elasticsearch",
+            "Linux"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, JavaScript, Vue, Elasticsearch, Linux"
+        },
+        {
+          "id": 2,
+          "nombre": "Reyes",
+          "apellido": "Cerro",
+          "rol": "frontend",
+          "salario": 0.19988007103844746,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "PostgreSQL",
+            "NumPy",
+            "Hibernate"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: JavaScript, PostgreSQL, NumPy, Hibernate"
+        },
+        {
+          "id": 2,
+          "nombre": "Reyes",
+          "apellido": "Cerro",
+          "rol": "devops",
+          "salario": 0.19988007103844746,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "JavaScript",
+            "PostgreSQL",
+            "NumPy",
+            "Hibernate"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para devops (Puntaje: 0.00). Tecnolog\u00edas principales: JavaScript, PostgreSQL, NumPy, Hibernate"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 2.046136239769112,
+      "presupuesto_restante": 49997.95386376023,
+      "promedio_puntaje": 0.0,
+      "cobertura_tecnologias": {},
+      "analisis_equipo": "An\u00e1lisis del equipo:\n- Backend (2): Baldomero Bonilla, Reyes Cerro\n- Frontend (2): Baldomero Bonilla, Reyes Cerro\n- Devops (1): Reyes Cerro\n\nTecnolog\u00edas principales del equipo:\n  JavaScript: 5 miembros\n  PostgreSQL: 3 miembros\n  NumPy: 3 miembros\n  Hibernate: 3 miembros\n  Java: 2 miembros\n  Vue: 2 miembros\n  Elasticsearch: 2 miembros\n  Linux: 2 miembros"
+    }
+  },
+  {
+    "timestamp": "2025-04-24T10:59:25.855414",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 3,
+          "nombre": "Jenaro",
+          "apellido": "Llanos",
+          "rol": "backend",
+          "salario": 0.5552831421006484,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "AWS",
+            "Jenkins",
+            "Pandas",
+            "Flask",
+            "Elasticsearch"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: AWS, Jenkins, Pandas, Flask, Elasticsearch"
+        },
+        {
+          "id": 9,
+          "nombre": "Am\u00e9rica",
+          "apellido": "Blanes",
+          "rol": "backend",
+          "salario": 0.70999375648127,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "MySQL",
+            "Hibernate",
+            "RabbitMQ"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para backend (Puntaje: 0.00). Tecnolog\u00edas principales: Java, MySQL, Hibernate, RabbitMQ"
+        },
+        {
+          "id": 10,
+          "nombre": "Isabel",
+          "apellido": "Gallardo",
+          "rol": "frontend",
+          "salario": 0.3904128958050177,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Python",
+            "Java",
+            "Vue",
+            "PostgreSQL",
+            "PyTorch",
+            "GraphQL",
+            "Redis"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Python, Java, Vue, PostgreSQL, PyTorch, GraphQL, Redis"
+        },
+        {
+          "id": 5,
+          "nombre": "Olga",
+          "apellido": "Vilaplana",
+          "rol": "frontend",
+          "salario": 0.06499475256611048,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Node.js",
+            "PostgreSQL",
+            "MySQL",
+            "Kubernetes",
+            "AWS",
+            "TensorFlow",
+            "PyTorch",
+            "TypeScript"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para frontend (Puntaje: 0.00). Tecnolog\u00edas principales: Node.js, PostgreSQL, MySQL, Kubernetes, AWS, TensorFlow, PyTorch, TypeScript"
+        },
+        {
+          "id": 7,
+          "nombre": "Baldomero",
+          "apellido": "Bonilla",
+          "rol": "devops",
+          "salario": 0.7232480133352267,
+          "nivel": "JR",
+          "tecnologias_principales": [
+            "Java",
+            "JavaScript",
+            "Vue",
+            "Elasticsearch",
+            "Linux"
+          ],
+          "puntaje": 0.0,
+          "seleccion_razon": "Seleccionado para devops (Puntaje: 0.00). Tecnolog\u00edas principales: Java, JavaScript, Vue, Elasticsearch, Linux"
+        }
+      ],
+      "presupuesto_total": 50000,
+      "presupuesto_utilizado": 2.4439325602797908,
+      "presupuesto_restante": 49997.55606743972,
+      "promedio_puntaje": 0.0,
+      "cobertura_tecnologias": {},
+      "analisis_equipo": "An\u00e1lisis del equipo:\n- Backend (2): Jenaro Llanos, Am\u00e9rica Blanes\n- Frontend (2): Isabel Gallardo, Olga Vilaplana\n- Devops (1): Baldomero Bonilla\n\nTecnolog\u00edas principales del equipo:\n  Java: 3 miembros\n  AWS: 2 miembros\n  Elasticsearch: 2 miembros\n  MySQL: 2 miembros\n  Vue: 2 miembros\n  PostgreSQL: 2 miembros\n  PyTorch: 2 miembros\n  Jenkins: 1 miembros\n  Pandas: 1 miembros\n  Flask: 1 miembros\n  Hibernate: 1 miembros\n  RabbitMQ: 1 miembros\n  Python: 1 miembros\n  GraphQL: 1 miembros\n  Redis: 1 miembros\n  Node.js: 1 miembros\n  Kubernetes: 1 miembros\n  TensorFlow: 1 miembros\n  TypeScript: 1 miembros\n  JavaScript: 1 miembros\n  Linux: 1 miembros"
+    }
+  },
+  {
+    "timestamp": "2025-04-24T11:32:56.203665",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "backend",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para backend por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        },
+        {
+          "id": 89,
+          "nombre": "Te\u00f3fila",
+          "apellido": "Ferrando",
+          "rol": "backend",
+          "nivel": "JR",
+          "salario": 0.849096527643045,
+          "puntaje": 0.1447448979591837,
+          "tecnologias_principales": [
+            "MongoDB",
+            "PyTorch",
+            "Django",
+            "Hibernate",
+            "Kafka"
+          ],
+          "seleccion_razon": "Seleccionado para backend por score: 0.14, valor: 0.17. Techs: MongoDB, PyTorch, Django"
+        },
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "frontend",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para frontend por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        },
+        {
+          "id": 89,
+          "nombre": "Te\u00f3fila",
+          "apellido": "Ferrando",
+          "rol": "frontend",
+          "nivel": "JR",
+          "salario": 0.849096527643045,
+          "puntaje": 0.1447448979591837,
+          "tecnologias_principales": [
+            "MongoDB",
+            "PyTorch",
+            "Django",
+            "Hibernate",
+            "Kafka"
+          ],
+          "seleccion_razon": "Seleccionado para frontend por score: 0.14, valor: 0.17. Techs: MongoDB, PyTorch, Django"
+        },
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "devops",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para devops por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        }
+      ],
+      "presupuesto": {
+        "total": 50000.0,
+        "utilizado": 2.054161007872608,
+        "restante": 49997.94583899213,
+        "porcentaje_utilizado": 0.004108322015745216
+      },
+      "metricas": {
+        "promedio_puntaje": 0.14500351864883884,
+        "cobertura_tecnologias": {},
+        "distribucion_niveles": {
+          "senior": 0,
+          "mid": 0,
+          "junior": 0
+        },
+        "tecnologias_faltantes": [],
+        "tecnologias_repetidas": {}
+      },
+      "analisis_equipo": "An\u00e1lisis detallado del equipo:\n\n\ud83d\udd39 Backend (2 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n   \u2022 Te\u00f3fila Ferrando (Nivel: JR, Score: 0.14, Salario: 0.85) - Techs: MongoDB, PyTorch, Django\n\n\ud83d\udd39 Frontend (2 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n   \u2022 Te\u00f3fila Ferrando (Nivel: JR, Score: 0.14, Salario: 0.85) - Techs: MongoDB, PyTorch, Django\n\n\ud83d\udd39 Devops (1 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n\n\ud83d\udcca Distribuci\u00f3n de niveles:\n   - Senior: 0 (0.0%)\n   - Mid: 0 (0.0%)\n   - Junior: 0 (0.0%)"
+    }
+  },
+  {
+    "timestamp": "2025-04-24T14:09:20.303776",
+    "request": {
+      "project_description": "Aplicacion Web con React.js, Node.js",
+      "team_structure": {
+        "backend": 2,
+        "frontend": 2,
+        "devops": 1
+      },
+      "budget": 50000
+    },
+    "response": {
+      "equipo": [
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "backend",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para backend por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        },
+        {
+          "id": 89,
+          "nombre": "Te\u00f3fila",
+          "apellido": "Ferrando",
+          "rol": "backend",
+          "nivel": "JR",
+          "salario": 0.849096527643045,
+          "puntaje": 0.1447448979591837,
+          "tecnologias_principales": [
+            "MongoDB",
+            "PyTorch",
+            "Django",
+            "Hibernate",
+            "Kafka"
+          ],
+          "seleccion_razon": "Seleccionado para backend por score: 0.14, valor: 0.17. Techs: MongoDB, PyTorch, Django"
+        },
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "frontend",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para frontend por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        },
+        {
+          "id": 89,
+          "nombre": "Te\u00f3fila",
+          "apellido": "Ferrando",
+          "rol": "frontend",
+          "nivel": "JR",
+          "salario": 0.849096527643045,
+          "puntaje": 0.1447448979591837,
+          "tecnologias_principales": [
+            "MongoDB",
+            "PyTorch",
+            "Django",
+            "Hibernate",
+            "Kafka"
+          ],
+          "seleccion_razon": "Seleccionado para frontend por score: 0.14, valor: 0.17. Techs: MongoDB, PyTorch, Django"
+        },
+        {
+          "id": 71,
+          "nombre": "\u00c1ngeles",
+          "apellido": "Torrecilla",
+          "rol": "devops",
+          "nivel": "SR",
+          "salario": 0.1186559841985747,
+          "puntaje": 0.1451759324419423,
+          "tecnologias_principales": [
+            "Docker",
+            "AWS",
+            "Jenkins",
+            "TensorFlow",
+            "Pandas",
+            "Linux"
+          ],
+          "seleccion_razon": "Seleccionado para devops por score: 0.15, valor: 1.22. Techs: Docker, AWS, Jenkins"
+        }
+      ],
+      "presupuesto": {
+        "total": 50000.0,
+        "utilizado": 2.054161007872608,
+        "restante": 49997.94583899213,
+        "porcentaje_utilizado": 0.004108322015745216
+      },
+      "metricas": {
+        "promedio_puntaje": 0.14500351864883884,
+        "cobertura_tecnologias": {},
+        "distribucion_niveles": {
+          "senior": 0,
+          "mid": 0,
+          "junior": 0
+        },
+        "tecnologias_faltantes": [],
+        "tecnologias_repetidas": {}
+      },
+      "analisis_equipo": "An\u00e1lisis detallado del equipo:\n\n\ud83d\udd39 Backend (2 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n   \u2022 Te\u00f3fila Ferrando (Nivel: JR, Score: 0.14, Salario: 0.85) - Techs: MongoDB, PyTorch, Django\n\n\ud83d\udd39 Frontend (2 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n   \u2022 Te\u00f3fila Ferrando (Nivel: JR, Score: 0.14, Salario: 0.85) - Techs: MongoDB, PyTorch, Django\n\n\ud83d\udd39 Devops (1 miembros):\n   \u2022 \u00c1ngeles Torrecilla (Nivel: SR, Score: 0.15, Salario: 0.12) - Techs: Docker, AWS, Jenkins\n\n\ud83d\udcca Distribuci\u00f3n de niveles:\n   - Senior: 0 (0.0%)\n   - Mid: 0 (0.0%)\n   - Junior: 0 (0.0%)"
+    }
+  }
+]

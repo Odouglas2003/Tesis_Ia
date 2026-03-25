@@ -1,0 +1,73 @@
+﻿id;first_name;last_name;email;Proyectos;Puesto de Trabajo;rol;tecnologías;seniority;Fecha_de_salida;Carga_Horaria
+16717353;Agustin;Ottonello;agustin.ottonello@mindfactory.ar;Escribanía;Dev. Back End;Dev. Back End;"Angular; .Net Core";Semi Senior;2025-12-31;80
+15707553;Alain;Kraupl;alain.kraupl@mindfactory.ar;Planes de Pago - DGR;Arquitecto;;;;;40
+16042444;Alejo Exequiel;Barrera;alejo.barrera@mindfactory.ar;SIRHU;Analista de Calidad (QA);Analista Calidad (QA);;;;80
+16422272;Anabel;Aguinaldo;anabel.aguinaldo@mindfactory.ar;Consultoría DGR, Municipalidad de Córdoba;Project Manager;Project Manager;;Senior;2026-03-31;40
+16187694;Andres;Leonangeli;andres.leonangeli@mindfactory.ar;Parking;Dev. Front End;Dev. Font End;"Angular; React Native; .Net Core";Junior Advanced;2025-05-12;80
+16524704;Ariel;Salcedo;ariel.salcedo@mindfactory.ar;Municipalidad de Córdoba, Rubik MF;Dev. Full Stack;Dev. Full Stack;"NodeJs; ReactJs; React Native";Semi Senior;2025-09-30;64
+15708416;Ashley;Quezada Montenegro;ashley.quezada@mindfactory.ar;Kolektor - FTA;Dev. Back End;Dev. Back End;"NodeJs; Python";Semi Senior;2025-08-31;64
+16774856;Carlos;Pierucci;carlos.pierucci@mindfactory.ar;Municipalidad de Córdoba;Dev. Full Stack;Dev. Full Stack;"Angular; .Net Core; .Net Framework";Semi Senior;2026-01-31;64
+16981201;Daniel Adolfo;Perco;daniel.perco@mindfactory.ar;;;;;;2026-04-30;64
+15708404;Daniel Eduardo;Lopez Caceres;daniel.lopez@mindfactory.ar;Escribanía, Soporte BANCOR;Dev. Full Stack;Desarrollador;"NodeJs; .Net Core; .Net Framework";Senior;2025-09-30;64
+16721823;Daniela;Vitelli;daniela.vitelli@mindfactory.ar;Parking;Dev. Full Stack;Dev. Font End;Angular;Semi Senior;2025-12-31;64
+16507185;David Leonardo;Di Francesco;leonardodifrancesco@mindfactory.ar;Transporte;Dev. Full Stack;Dev. Full Stack;"Angular; .Net Core";Junior Advanced;2025-08-31;64
+15707550;Delfina;Bonichelli;delfina.bonichelli@mindfactory.ar;Recursos Humanos;Analista RRHH;Analista RRHH;;;2025-08-31;64
+15708391;Diego Oscar;Debanne;diego.debanne@mindfactory.ar;;Project Manager;Project Manager;;Senior;2026-01-31;50
+15708380;Emmanuel;Benitez;emanuel.benitez@mindfactory.ar;Transporte;Dev. Front End;Dev. Font End;"Angular; Figma; Html / Css";Semi Senior;;50
+16100428;Ernesto David;Sequeira;ernesto.sequeira@mindfactory.ar;Parking;DEVOPS;Devops;Azure;Semi Senior;2025-05-31;50
+16969056;Ezequiel;Oberti;ezequiel.oberti@mindfactory.ar;Planes de Pago - DGR;;;;;;50
+16524701;Facundo;Esteban;facundo.esteban@mindfactory.ar;Secretaría de Innovación;Dev. Full Stack;Dev. Full Stack;Java;Semi Senior;2025-09-30;50
+16904043;Facundo;Graglia;facundo.graglia@mindfactory.ar;Recursos Humanos;Analista de Marketing y Comunicación ;;;;2025-12-31;50
+15708381;Federico;Bettic;federico.bettic@mindfactory.ar;Planes de Pago - DGR;Dev. Full Stack;Dev. Full Stack;"NodeJs; ReactJs; React Native";Junior Advanced;2025-08-31;50
+16107797;Federico Gabriel;Torancio;federico.torancio@mindfactory.ar;Transporte;Dev. Back End;Dev. Back End;"AWS; Azure; Docker; .Net Core; .Net Framework";Junior Advanced;2026-03-31;50
+15708398;Fiorela;Florian;fiorela.florian@mindfactory.ar;UX/UI;Diseñador UX/UI;Diseñador UX/UI;Figma;Junior Advanced;2025-08-31;50
+15708394;Florencia Paula;Farias;florencia.farias@mindfactory.ar;Kolektor - FTA;Analista de Calidad (QA);Analista Calidad (QA);"Selenium; Html / Css";Junior Advanced;2025-10-31;70
+15824053;Francisco;Ameri Lopez Lozano;francisco.ameri@mindfactory.ar;Escribanía;Analista Funcional;Analista Funcional;"Angular; Java; Python";Junior Advanced;2025-10-31;70
+16681581;Francisco  Augusto;Olmos Bossa;francisco.olmos@mindfactory.ar;SIRHU;Dev. Full Stack;Dev. Back End;"Angular; NodeJs";Semi Senior;2025-12-31;70
+16533641;Gastón;Molina;gaston.molina@mindfactory.ar;Bus Digital;Dev. Front End;Dev. Full Stack;"ReactJs; React Native";Trainee;2025-10-31;70
+15708446;Gino Javier;Carignano;gino.carignano@mindfactory.ar;Lotería de Córdoba, Bus Digital;Dev. Full Stack;Dev. Full Stack;"NodeJs; ReactJs; React Native; Flutter";Senior;2025-09-30;70
+15708403;Griselda;Leone;griselda.leone@mindfactory.ar;Transporte, Secretaría de Innovación;;Project Manager;"Figma; Html / Css";Junior Advanced;2026-02-28;90
+16107798;Guido Stefano;Falco;guido.falco@mindfactory.ar;Secretaría de Innovación;Dev. Full Stack;Dev. Full Stack;"Angular; NodeJs; ReactJs; React Native; .Net Core";Junior;2026-03-31;90
+15708405;Gustavo Alejandro;Maras;gustavo.maras@mindfactory.ar;Kolektor - FTA;Dev. Full Stack;Dev. Full Stack;"Angular; AWS; NodeJs";Semi Senior;2026-02-28;90
+15708424;Hernán Gabriel;Soto;hernan.soto@mindfactory.ar;Lotería de Córdoba;Dev. Back End;Dev. Back End;"NodeJs; ReactJs; .Net Core";Semi Senior;2026-04-30;90
+15708401;Ignacio Tomás;Kuchen;ignacio.kuchen@mindfactory.ar;DEVOPS;DEVOPS;Devops;AWS;Semi Senior;;90
+16422267;Javier;Picco;javier.picco@mindfactory.ar;Consultoría DGR;;;;;;90
+16498896;Jhonathan Manuel;Cutisaca Copacalle;Jhonathan.cutisaca@mindfactory.ar;Escribanía;;Dev. Font End;"Angular; AWS; Docker; ReactJs; React Native; Flutter; Html / Css";Junior Advanced;2025-08-31;90
+16631908;Joaquin;Wisgikl;joaquin.wisgikl@mindfactory.ar;Bus Digital;Dev. Full Stack;Dev. Full Stack;"NodeJs; ReactJs";Trainee;2026-01-31;90
+16507415;José Eduardo;Ontivero;jose.ontivero@mindfactory.ar;Consultoría DGR;;Analista Funcional;;Senior;2025-08-31;90
+15853068;Juan Andrés;Cabaleiro;juan.cabaleiro@mindfactory.ar;SIRHU;Dev. Full Stack;Dev. Full Stack;"Angular; NodeJs; .Net Core; .Net Framework";Junior Advanced;2025-07-31;90
+15708414;Juan Manuel;Pereyra Gomeza;juanmanuel.pereyra@mindfactory.ar;;Project Manager;Project Manager;"DB Relacionales; Figma; Mockups; UML; SQL Server; MySql";Senior;2025-08-31;90
+16215733;Juan Martín;Moyano;martin.moyano@mindfactory.ar;Escribanía;Dev. Back End;Dev. Back End;.Net Core;Junior Advanced;2025-05-31;90
+15708399;Julieta;Gonzalez;julieta.gonzalez@mindfactory.ar;Kolektor - FTA;Dev. Front End;Dev. Font End;"Angular; NodeJs; Html / Css";Semi Senior;2025-11-30;45
+15852140;Julieta Rosa Amelia;Wiesztort;julieta.wiesztort@mindfactory.ar;Bus Digital;Dev. Front End;Dev. Full Stack;"Angular; Figma; Flutter";Semi Senior;2025-06-30;45
+16524702;Karen;Lettieri;karen.lettieri@mindfactory.ar;Aparte.Me;Dev. Full Stack;Dev. Font End;"NodeJs; Python; Flutter";Junior Advanced;2025-06-30;45
+16543419;Karina;Jalil;karina.jalil@mindfactory.ar;Rubik MF;Scrum Master;Scrum Master;;Junior Advanced;2025-09-30;45
+15708397;Leandro Ernesto;Filippi;leandro.filippi@mindfactory.ar;Rubik MF;Dev. Full Stack;Dev. Font End;ReactJs;;;45
+16267181;Leonardo Gabriel;Irusta;Leonardo.irusta@mindfactory.ar;SIRHU;;Dev. Back End;NodeJs;Junior Advanced;2025-05-31;45
+16498826;Lisandro Agustín;Córdoba;lisandro.cordoba@mindfactory.ar;Municipalidad de Córdoba;Dev. Front End;Dev. Full Stack;"AWS; Docker; Figma; NodeJs; ReactJs; React Native";Junior Advanced;2025-08-31;45
+16569441;Lucas;Agüero;lucas.aguero@mindfactory.ar;Provisión IT;Dev. Back End;Dev. Back End;.Net Core;Semi Senior;2025-10-31;45
+15708411;Lucas David;Mulawka;lucas.mulawka@mindfactory.ar;Planes de Pago - DGR;Dev. Front End;Dev. Font End;"Angular; ReactJs; React Native";;2026-03-31;45
+15707470;Luciana;Peña;luciana.pena@mindfactory.ar;Recursos Humanos;Manager de RRHH;Manager RRHH;;Senior;2025-05-31;45
+16466256;Malena;Caiado;malena.caiado@mindfactory.ar;Transporte, Consultoría DGR;Analista Funcional;Analista Funcional;;Junior;2025-08-31;45
+15708402;Maria Constanza;Legna;constanza.legna@mindfactory.ar;UX/UI;Diseñador UX/UI;Diseñador UX/UI;"Figma; Html / Css";Junior Advanced;2025-07-31;45
+16313481;María Virginia;Ovejero;Virginia.ovejero@mindfactory.ar;Administración y Finanzas;;Manager Administración y Finananzas;;Senior;2025-06-30;45
+16083266;Marianela;Porra;marianela.porra@admindesk.com.ar;Administración y Finanzas;;;;;;45
+15861356;Martín;Mendez;martin.mendez@mindfactory.ar;Directorio;CEO;;;;;78
+15841899;Martin Sebastian;Enriquez;martin.enriquez@mindfactory.ar;Kolektor - FTA;Dev. Full Stack;Dev. Full Stack;"Angular; Figma; NodeJs";Semi Senior;2025-06-30;78
+15708378;Mauricio Javier;Aragno;mauricio.aragno@mindfactory.ar;Planes de Pago - DGR, Rubik MF;Dev. Full Stack;Dev. Full Stack;"Angular; AWS; NodeJs; ReactJs; VueJs; React Native";Senior;2025-10-31;78
+16817823;Maximiliano Ariel;Hitter;Maximiliano.hitter@mindfactory.ar;Planes de Pago - DGR;Dev. Back End;Dev. Full Stack;NodeJs;;;78
+16197563;Nicolás;Bottero;nicolas.bottero@mindfactory.ar;SIRHU;Project Manager;Project Manager;;Junior Advanced;2025-10-31;78
+16946661;Nicolas;Cortes;nicolas.cortes@mindfactory.ar;DEVOPS;;;;;2026-03-31;78
+16523753;Octavio Ezequiel;Douglas;octavio.douglas@mindfactory.ar;Rubik MF;Dev. Full Stack;Dev. Font End;"NodeJs; ReactJs; React Native";Trainee;2025-10-31;78
+16215515;Pablo;Perez Musolino;operaciones@admindesk.com.ar;Administración y Finanzas;;;;;;78
+16571890;Rodrigo;Centurion;rodrigo.centurion@mindfactory.ar;Escribanía;Analista de Calidad (QA);Analista Calidad (QA);;;;78
+15707551;Sebastián Carlos;Sosa;sebastian.sosa@mindfactory.ar;Directorio;CEO;Manager Administración y Finanzas;;;;78
+16523752;Sol Melina;Checa;sol.checa@mindfactory.ar;Rubik MF;Dev. Full Stack;Dev. Full Stack;"NodeJs; ReactJs; React Native";Trainee;2025-10-31;78
+16215698;Tomas;Gonzalez;tomas.gonzalez@kiuviservices.com.ar;SIRHU;Analista de Calidad (QA);Analista Calidad (QA);;;;78
+16533639;Tomás;Molina;tomas.molina@mindfactory.ar;Bus Digital;Dev. Back End;Dev. Back End;NodeJs;Trainee;2025-10-31;78
+16422266;Tomás;Rios;tomas.rios@mindfactory.ar;;;;;;;120
+15734825;Ulises Alejandro;Vettorello;ulises.vettorello@mindfactory.ar;Transporte;Analista de Calidad (QA);Analista Calidad (QA);Selenium;Junior Advanced;2025-10-31;120
+16325790;Usuario;AdminDesk;operaciones2@admindesk.com.ar;;;;;;;120
+16869073;Valentina;Marchetti;valentina.marchetti@mindfactory.ar;Administración y Finanzas;;Analista Administración;;;2026-03-31;120
+15708392;Verónica Alejandra;Dias;veronica.dias@mindfactory.ar;Kolektor - FTA;Dev. Back End;Dev. Back End;NodeJs;Semi Senior;2025-05-31;120
+16507113;Walter Ezequiel;Balderrama;walter.balderrama@mindfactory.ar;Secretaría de Innovación;Dev. Full Stack;Dev. Full Stack;"Angular; .Net Core; .Net Framework";Semi Senior;2025-08-31;120

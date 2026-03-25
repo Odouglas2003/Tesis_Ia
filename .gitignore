@@ -1,0 +1,8 @@
+.env
+readme_1.txt
+requeriments_render.txt
+/venv
+__pycache__/
+*.pyc
+mongodata
+package-lock.json

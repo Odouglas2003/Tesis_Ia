@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        description: 'Environment to deploy to (testing, staging, production). Defaults to testing.'
+        required: true
+        default: 'testing'
+        options:
+          - testing
+        type: choice
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ci-semantic-release:
+    if: github.ref == 'refs/heads/main'
+    uses: mindfactory-sw/mf-mindstack-gha/.github/workflows/ci-semantic-release.yaml@main
+    secrets: inherit
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+  build:
+    needs: [ci-semantic-release]
+    uses: mindfactory-sw/mf-mindstack-gha/.github/workflows/mf-mindstack-build.yaml@main
+    secrets: inherit
+    with:
+      VERSION: ${{ needs.ci-semantic-release.outputs.SEMVER }}
+
+  deploy:
+    needs: [build, ci-semantic-release]
+    uses: mindfactory-sw/mf-mindstack-gha/.github/workflows/mf-mindstack-deploy.yaml@main
+    secrets: inherit
+    with:
+      ENVIRONMENT: ${{ inputs.ENVIRONMENT }}
+      VERSION: ${{ needs.ci-semantic-release.outputs.SEMVER }}

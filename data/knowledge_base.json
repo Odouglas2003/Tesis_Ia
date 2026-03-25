@@ -1,0 +1,478 @@
+[
+  {
+    "source": "Radme_front.md",
+    "text": "Contexto: General\n\nThis is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)."
+  },
+  {
+    "source": "Radme_front.md",
+    "text": "Contexto: Getting Started\n\nFirst, run the development server:\n\n```bash\nnpm run dev\n# or\nyarn dev\n# or\npnpm dev\n# or\nbun dev\n```\n\nOpen [http://localhost:3000](http://localhost:3000) with your browser to see the result.\n\nYou can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.\n\nThis project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel."
+  },
+  {
+    "source": "Radme_front.md",
+    "text": "Contexto: Learn More\n\nTo learn more about Next.js, take a look at the following resources:\n\n- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.\n- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.\n\nYou can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!"
+  },
+  {
+    "source": "Radme_front.md",
+    "text": "Contexto: Deploy on Vercel\n\nThe easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.\n\nCheck out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: General\n\n# Planilla Rubik - Backend API\n\nEste proyecto es el componente backend de la aplicación Planilla Rubik, encargado de gestionar la lógica de negocio, la interacción con la base de datos (MongoDB), la autenticación de usuarios y la comunicación con otros servicios, como el Motor de IA."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 🚀 tecnologias Utilizadas\n\n*   **Node.js:** Entorno de ejecución para JavaScript del lado del servidor.\n*   **Express.js:** Framework web para construir la API.\n*   **MongoDB:** Base de datos NoSQL orientada a documentos.\n*   **Mongoose:** ODM (Object Data Modeling) para interactuar con MongoDB.\n*   **JWT (JSON Web Tokens):** Para la autenticación de usuarios.\n    *   Implementado con `jwt-simple`.\n*   **bcrypt:** Para el hashing de contraseñas.\n*   **Nodemailer:** Para el envío de correos electrónicos (ej. autorización de registro, reseteo de contraseña).\n*   **Winston:** Para un sistema de logging robusto y configurable.\n*   **Socket.IO:**  Para comunicación en tiempo real.\n*   **dotenv:** Para la gestión de variables de entorno.\n*   **cors:** Para habilitar Cross-Origin Resource Sharing.\n*   **express-async-errors:** Para un manejo de errores simplificado en rutas asíncronas.\n*   **Nodemon:** Para el reinicio automático del servidor durante el desarrollo."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 📋 Prerrequisitos\n\n*   Node.js (se recomienda v18.x o superior, como se vio en logs v18.19.1)\n*   npm (Node Package Manager, viene con Node.js)\n*   Una instancia de MongoDB accesible (local o remota).\n*   (Opcional) Git para el control de versiones."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n1.  **Clonar el Repositorio (si aún no lo has hecho):**\n    ```bash\n    git clone https://gitlab.mindfactory.ar/sol.checa/planilla-rubik-back.git\n    cd planilla-rubik-back\n    ```"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n2.  **Instalar Dependencias:**\n    ```bash\n    npm install\n    ```"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n3.  **Crear el archivo `.env`:**\n    En la raíz del proyecto, crea un archivo llamado `.env` y configura las siguientes variables según tu entorno. Adapta los valores de ejemplo:"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n```env\n    # Configuración del Servidor\n    PORT=3900"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n# Configuración de MongoDB \n    MONGO_HOST=mongodb://user:rubik@tu_ip_o_host_mongodb:27017/Rubik # Reemplaza user:rubik y la IP/host\n    # O si prefieres construirla con partes :\n    # MONGO_USER=tu_usuario_mongo\n    # MONGO_PASSWORD=tu_password_mongo\n    # MONGO_DB=Rubik\n    # MONGO_HOSTNAME=tu_ip_o_host_mongodb\n    # MONGO_PORT=27017"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n# Configuración de JWT\n    JWT_SECRET=TU_SECRETO_JWT_SUPER_SEGURO_Y_LARGO # Cambia esto por una cadena aleatoria y segura"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n# Configuración de Email (Nodemailer con Gmail)\n    EMAIL_USER=tu_email_gmail_para_enviar@gmail.com\n    EMAIL_PASSWORD=tu_contraseña_de_aplicacion_gmail # Si usas Gmail con 2FA, necesitas una contraseña de aplicación\n    ADMIN_EMAIL=email_del_admin_para_recibir_solicitudes@example.com # Email para notificaciones de registro"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n# URLs de Frontend y Backend (usadas en emails, etc.)\n    FRONTEND_URL=http://localhost:3000 # URL de tu frontend en desarrollo\n    BACKEND_URL=http://localhost:3900  # URL de este backend en desarrollo"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n# Entorno de Node (development o production)\n    NODE_ENV=development\n    ```\n    **Importante para `EMAIL_PASSWORD`:** Si usas Gmail y tienes la autenticación de dos factores (2FA) activada, necesitarás generar una \"Contraseña de aplicación\" específica para Nodemailer desde la configuración de seguridad de tu cuenta de Google."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ⚙️ Configuración del Entorno\n\n4.  **Crear la carpeta de Logs:**\n    En la raíz del proyecto, crea una carpeta llamada `logs`:\n    ```bash\n    mkdir logs\n    ```\n    Winston guardará aquí los archivos `combined.log`, `error.log`, y `http.log`."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: ▶️ Ejecutar la Aplicación\n\n*   **Para Desarrollo (con Nodemon para recarga automática):**\n    ```bash\n    npm run dev\n    ```\n    El servidor debería iniciarse (por defecto en el puerto 3900) y conectarse a MongoDB. Verás logs en la consola y en la carpeta `logs/`.\n\n*   **Para Producción:**\n    ```bash\n    npm start\n    ```\n    Este comando ejecutará `NODE_ENV=production node index.js`, optimizando la aplicación para producción y ajustando los niveles de logging. (Asegúrarse de que las variables de entorno en producción estén configuradas adecuadamente en el servidor)."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 📁 Estructura del Proyecto\n\nplanilla-rubik-back/\n├── config/\n│ └── logger.js # Configuración del logger Winston\n├── controllers/ # Lógica para manejar requests y responses HTTP\n│ ├── collaborator.js\n│ ├── configuration.js\n│ ├── extraFieldController.js\n│ ├── infocolaborator.js\n│ ├── notification.js\n│ ├── personnelController.js\n│ ├── projects.js\n│ ├── tecnology.js\n│ ├── user.js\n│ └── vacancie.js\n├── database/\n│ └── connection.js # Lógica para la conexión a MongoDB\n├── logs/ # Archivos de log generados por Winston (debe crearse)\n├── middlewares/ # Middlewares personalizados (ej. auth, multerConfig)\n│ └── multerConfig.js # (Si se usa para subida de archivos al backend)\n├── models/ # Schemas y modelos de Mongoose\n│ ├── BasicFieldDef.js\n│ ├── collaborator.js\n│ ├── configuration.js\n│ ├── ExtraFieldDef.js\n│ ├── infocolaborator.js\n│ ├── notification.js\n│ ├── Personnel.js\n│ ├── projects.js\n│ ├── tecnology.js\n│ ├── user.js\n│ └── vacancie.js\n├── routes/ # Definición de los endpoints de la API\n│ ├── basicFieldRoutes.js\n│ ├── collaborator.js\n│ ├── configuration.js\n│ ├── extraFieldRoutes.js\n│ ├── infocolaborator.js\n│ ├── notification.js\n│ ├── personnelRoutes.js\n│ ├── projects.js\n│ ├── tecnology.js\n│ ├── user.js\n│ └── vacancie.js\n├── services/ # Lógica de negocio y interacción con la base de datos\n│ ├── CollaboratorService.js\n│ ├── ConfigurationService.js\n│ ├── ExtraFieldService.js\n│ ├── InfoCollaboratorService.js\n│ ├── jwt.js # Servicio para JWT\n│ ├── NotificationService.js\n│ ├── PersonnelService.js\n│ ├── ProjectService.js\n│ ├── TecnologyService.js\n│ ├── UserService.js\n│ └── VacancieService.js\n├── .env # Variables de entorno (NO comitear a Git)\n├── .gitignore # Archivos ignorados por Git\n├── .gitlab-ci.yml # Configuración de CI/CD para GitLab\n├── index.js # Punto de entrada principal de la aplicación\n├── package-lock.json\n├── package.json\n└── README.md # Este archivo"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: API Endpoints (Resumen para Frontend y Pruebas con Postman)\n\nLa URL base para todos los endpoints es `http://localhost:3900/api` \n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: User (`/api/user`)\n\n*   **`GET /prueba`**: Para obtener una lista de todos los usuarios (uso de prueba/admin).\n*   **`POST /register`**: Para registrar un nuevo usuario (enviar `name`, `email`, `password`, `rol` en el body).\n*   **`POST /login`**: Para autenticar un usuario (enviar `email`, `password` en el body).\n*   **`GET /authorize/:token/:action`**: Para procesar activación/rechazo de cuenta (usado por enlace de email).\n*   **`PUT /update/:email`**: Para actualizar un usuario (reemplazar `:email`, enviar campos a modificar en body).\n*   **`POST /delete/:email`**: Para marcar un usuario como eliminado (reemplazar `:email`). (Considerar cambiar a método `DELETE`).\n*   **`POST /auth/editpws`**: Para solicitar reseteo de contraseña (enviar `email` en el body).\n*   **`POST /auth/resetpassword`**: Para establecer nueva contraseña (enviar `email`, `newPassword`, `confirmPassword` en el body).\n*   **`POST /profile/:userEmail/image`**: Para subir una imagen de perfil (reemplazar `:userEmail`, enviar imagen como form-data con campo `profileImageField`). *Nota: Actualmente, el backend guarda el archivo y devuelve la ruta. No lo asocia al UserSchema directamente.*\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Collaborator (`/api/collaborator`)\n\n*   **`GET /colaborador`**: Para obtener la lista de todos los colaboradores activos (opcional `?search=termino`).\n*   **`POST /register`**: Para crear un nuevo colaborador (enviar datos del colaborador en el body).\n*   **`GET /getone/:id`**: Para obtener los detalles de un colaborador específico (reemplazar `:id` con ID numérico).\n*   **`PUT /editar/:id`**: Para actualizar un colaborador (reemplazar `:id`, enviar campos a modificar en body).\n*   **`POST /eliminar/:id`**: Para marcar un colaborador como eliminado (reemplazar `:id`).\n*   **`GET /check-contracts`**: Para obtener colaboradores con contratos por vencer/vencidos.\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Projects (`/api/projects`)\n\n*   **Si usas rutas originales:**\n    *   **`GET /proyecto`**: Para obtener la lista de proyectos (con `?search=`).\n    *   **`POST /register`**: Para crear un nuevo proyecto (enviar datos en el body).\n    *   **`GET /buscar/:taxonId`**: Para obtener un proyecto por `taxonId`.\n    *   **`PUT /editar/:taxonId`**: Para actualizar un proyecto (enviar datos a modificar en el body).\n    *   **`POST /eliminar/:taxonId`**: Para marcar un proyecto como eliminado.\n*   **Si usas rutas RESTful (ej. `GET /`, `POST /`, `GET /:taxonId`, etc.):** Adapta según corresponda.\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Technology (`/api/technology`)\n\n*   **`GET /tecnology`**: Para obtener la lista de todas las tecnologias.\n*   **`POST /register`**: Para crear una nueva tecnologia (enviar `tecnologias` (nombre) en el body).\n*   **`GET /tecnology/:id`**: Para obtener una tecnologia por su ID numérico (reemplazar `:id`).\n*   **`PUT /tecnology/:id`**: Para actualizar una tecnologia (reemplazar `:id`, enviar `tecnologias` (nuevo nombre) en body).\n*   **`DELETE /tecnology/:id`**: Para borrar una tecnologia (reemplazar `:id`).\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Vacancie (`/api/vacancie`)\n\n*   **`GET /`**: Para obtener la lista de todas las vacantes activas (opcional `?search=termino`).\n*   **`POST /`**: Para crear una nueva vacante (enviar datos de la vacante en el body).\n*   **`GET /:id`**: Para obtener una vacante por su `id` numérico (reemplazar `:id`).\n*   **`PUT /:id`**: Para actualizar una vacante (reemplazar `:id`, enviar campos a modificar en body).\n*   **`DELETE /:id`**: Para marcar una vacante como eliminada (reemplazar `:id`).\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Configuration (`/api/configuration`)\n\n*   **`GET /columns/:section`**: Para obtener la configuración de columnas para una `section` (ej. `/api/configuration/columns/projects`).\n*   **`PUT /updateColumns`**: Para actualizar/crear la configuración de columnas (enviar `tableType` (sección) y `columns` (array de objetos) en el body).\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Notification (`/api/notification`)\n\n*   **`POST /checkContracts`**: Para activar la revisión de vencimientos de contratos de colaboradores.\n*   **`POST /checkProjects`**: Para activar la revisión de vencimientos de proyectos.\n*   **`GET /user/:email`**: Para obtener las notificaciones no leídas del usuario especificado por `:email`.\n*   **`PUT /read/single`**: Para marcar una notificación específica como leída (enviar `email`, `notificationId` en el body).\n*   **`PUT /read/all`**: Para marcar todas las notificaciones de un usuario como leídas (enviar `email` en el body).\n*   **`GET /all`**: Para obtener todas las notificaciones (admin).\n*   **`GET /manager`**: Para obtener notificaciones por email de manager (`?email=manager@example.com`).\n*   **`GET /status`**: Para obtener por email y estado de lectura (`?email=user@example.com&read=true`).\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: InfoCollaborator (`/api/infocollaborator`)\n\n*   **`GET /infocola`**: Para obtener la lista de toda la información de colaboradores activos.\n*   **`POST /register`**: Para registrar nueva info de colaborador (enviar datos en el body).\n*   **`GET /getone/:id`**: Para obtener info de un colaborador por su `id` numérico (reemplazar `:id`).\n*   **`PUT /editar/:id`**: Para actualizar info de un colaborador (reemplazar `:id`, enviar datos a modificar en body).\n*   **`POST /eliminar/:id`**: Para marcar info de un colaborador como eliminada (reemplazar `:id`).\n*   **`GET /check-contracts`**: Para obtener info de colaboradores con contratos por vencer/vencidos.\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Basic Fields (`/api/basic-fields`)\n\n*   **`GET /`**: Para obtener la lista de todos los campos básicos.\n*   **`POST /`**: Para crear un nuevo campo básico (enviar `key`, `label`, `type` en el body).\n*   **`GET /:key`**: Para obtener detalles de un campo básico por su `key`.\n*   **`PUT /:key`**: Para actualizar un campo básico por su `key` (enviar campos a modificar en el body).\n*   **`DELETE /:key`**: Para borrar un campo básico por su `key`.\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Extra Fields (`/api/extra-fields`)\n\n*   **`GET /`**: Para obtener la lista de todas las definiciones de campos extras.\n*   **`POST /`**: Para crear una nueva definición de campo extra (enviar `key`, `label`, `type`, `options` (si aplica) en el body).\n*   **`GET /:id`**: Para obtener detalles de una definición de campo extra por su `_id` de MongoDB.\n*   **`PUT /:id`**: Para actualizar una definición de campo extra por su `_id` (enviar campos a modificar en el body).\n*   **`DELETE /:id`**: Para borrar una definición de campo extra por su `_id` (puede fallar si está en uso).\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: Módulo: Personnel (`/api/personnel` o `/api/person`)\n\n*   **`GET /`**: Para obtener la lista de todo el personal.\n*   **`POST /`**: Para crear un nuevo registro de personal (enviar datos en el body).\n*   **`GET /:id`**: Para obtener detalles de un registro de personal por su `_id` de MongoDB.\n*   **`PUT /:id`**: Para actualizar un registro de personal por su `_id` (enviar campos a modificar en el body).\n*   **`DELETE /:id`**: Para borrar un registro de personal por su `_id`.\n\n---"
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 📝 Logging\n\nLa aplicación utiliza **Winston** para el logging. Los logs se configuran para diferentes niveles y transportes:\n*   **Consola:** Muestra logs en tiempo real (nivel `debug` en desarrollo, `warn` en producción).\n*   **Archivos (en la carpeta `logs/`):**\n    *   `http.log`: Registra todas las peticiones HTTP.\n    *   `combined.log`: Registra todos los eventos de nivel `info` y superiores.\n    *   `error.log`: Registra todos los eventos de nivel `error` y superiores (errores críticos del servidor)."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: errorHandler Middleware\n\nSe utiliza `express-async-errors` para capturar errores en rutas asíncronas y un middleware de error global en `index.js` para:\n1.  Loguear el error usando Winston.\n2.  Enviar una respuesta JSON estandarizada al cliente.\n    *   Errores 4xx (del cliente, operacionales) pueden mostrar el mensaje de error específico.\n    *   Errores 5xx (del servidor, no operacionales) mostrarán un mensaje genérico en producción."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 🧪 Pruebas con Postman\n\nPara cada endpoint listado arriba, puedes usar Postman (o una herramienta similar) para enviar las peticiones.\n*   **Método HTTP:** El indicado (GET, POST, PUT, DELETE).\n*   **URL:** Construye la URL completa (ej. `http://localhost:3900/api/user/login`).\n*   **Headers:** Para `POST` y `PUT` con body JSON, incluye `Content-Type: application/json`. Si tus rutas están protegidas, incluye `Authorization: Bearer TU_TOKEN_JWT`.\n*   **Body:** Para `POST` y `PUT`, construye el JSON con los datos requeridos según la descripción del endpoint.\n\nRevisar las respuestas HTTP (status code, body) y los logs del servidor para verificar el comportamiento."
+  },
+  {
+    "source": "Readme_backend.md",
+    "text": "Contexto: 💡 Próximos Pasos y Mejoras (Sugerencias)\n\n*   **Autenticación y Autorización:** Implementar middlewares para proteger rutas que lo requieran.\n*   **Validación de Entrada Avanzada:** Usar librerías como `express-validator` o `Joi` para validaciones más robustas en los controladores o a nivel de ruta.\n*   **Documentación de API:** Generar documentación con Swagger/OpenAPI.\n*   **Tests Automatizados:** Escribir tests unitarios para los servicios y tests de integración para los endpoints.\n*   **Optimización de Base de Datos:** Revisar consultas y asegurar índices adecuados a medida que la aplicación crece."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: README General Conceptual del Sistema \"Planilla Rubik\"\n\n# Planilla Rubik - Sistema Integral de Gestión y Recomendación\n\n\n\n**Planilla Rubik** es un sistema diseñado para [**\"optimizar la asignación de colaboradores a proyectos y tareas, facilitando la gestión de planillas y la toma de decisiones basada en datos y recomendaciones inteligentes.\"**].\n\nEl sistema se compone de tres módulos principales que trabajan en conjunto:\n\n1.  **Frontend (Planilla Rubik UI):** Una interfaz web moderna y responsiva construida con Next.js para la interacción del usuario, visualización de datos y gestión de planillas.\n2.  **Backend (Planilla Rubik API):** Un servicio API robusto desarrollado en Node.js con Express, encargado de la lógica de negocio principal, gestión de datos (MongoDB) y comunicación en tiempo real.\n3.  **Motor de IA (Software Team Builder):** Un servicio especializado en Python (FastAPI) que provee funcionalidades avanzadas de recomendación de equipos y análisis de perfiles basado en IA."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nEl sistema sigue una arquitectura de microservicios (o servicios distribuidos) donde el frontend interactúa principalmente con el Backend API, y este último puede, a su vez, consultar al Motor de IA para obtener recomendaciones especializadas."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\n┌──────────────────────┐      HTTP/API       ┌──────────────────────┐      HTTP/API       ┌────────────────────────┐\n│                      │─────────────────────►│                      │─────────────────────►│                        │\n│  Frontend (Next.js)  │                      │  Backend API (Node.js) │                      │  Motor de IA (Python)  │\n│  (localhost:3000)    │◄─────────────────────┤  (localhost:3900)    │◄─────────────────────┤  (localhost:8000)      │\n│                      │      Socket.IO       │                      │                      │                        │\n└──────────────────────┘                      └──────────────────────┘                      └────────────────────────┘\n         │                                              │                                       ▲\n         │                                              ▼                                       │\n         │                                    ┌────────────────┐                                │\n         └────────────────────────────────────►│   MongoDB      │◄────────────────────────────────┘\n                                              └────────────────┘\n                                           (Base de Datos Principal)"
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\n\"El frontend es una Single Page Application (SPA) construida con Next.js que consume los servicios del Backend API.\"\n                             \"El Backend API actúa como el orquestador principal, manejando la lógica de negocio, la autenticación y la persistencia en MongoDB.\"\n                             \"Para funcionalidades de recomendación o análisis avanzado, el Backend API puede delegar en el Motor de IA, que es un servicio especializado en Python.\"\n                             \"La comunicación en tiempo real para notificaciones o actualizaciones instantáneas se maneja vía Socket.IO directamente entre el Frontend y el Backend API.\""
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nComponentes Detallados:\n1. Frontend (planilla-rubik)\ntecnologia: Next.js (v15+), React, TypeScript, Tailwind CSS, Material-UI (MUI)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nfront/\n└── planilla-rubik/\n    ├── .env.local                  # Variables de entorno locales (ej. URL de la API)\n    ├── .eslintignore               # (Inferido,  ESLint)\n    ├── .eslintrc.json              # Configuración de ESLint\n    ├── .gitignore                  # Archivos y carpetas a ignorar por Git\n    ├── .gitlab-ci.yml              # Configuración de CI/CD para GitLab\n    ├── .next/                      # Directorio de build y caché de Next.js (generado)\n    │   ├── cache/\n    │   ├── server/\n    │   ├── static/\n    │   ├── types/\n    │   ├── app-build-manifest.json\n    │   ├── build-manifest.json\n    │   └── react-loadable-manifest.json\n    ├── node_modules/               # Dependencias del proyecto (generado por npm/yarn)\n    │   └── ...\n    ├── package-lock.json           # Lockfile de NPM \n    ├── package.json                # Metadatos del proyecto, scripts y dependencias\n    ├── postcss.config.mjs          # Configuración de PostCSS (usado por Tailwind CSS)\n    ├── public/                     # Archivos estáticos públicos\n    │   └── ... (contenido no visible en las capturas,  favicon, imágenes, etc.)\n    ├── README.md                   # Documentación del proyecto frontend\n    ├── src/                        # Directorio principal del código fuente\n    │   ├── app/                    # Rutas y UI principal (Next.js App Router)\n    │   │   ├── asyncMock.js        # Mock de datos asíncronos (para pruebas/desarrollo)\n    │   │   ├── favicon.ico         # Ícono de la aplicación \n    │   │   ├── fonts/              # (Carpeta para fuentes personalizadas)\n    │   │   │   └── ...\n    │   │   ├── globals.css         # Estilos CSS globales\n    │   │   ├── hooks/              # Custom React Hooks\n    │   │   │   └── ...\n    │   │   ├── layout.tsx          # Layout raíz de la aplicación\n    │   │   ├── page.tsx            # Página principal o de inicio (ruta '/')\n    │   │   ├── pages/              # Sub-rutas o páginas específicas de la aplicación\n    │   │   │   └── ... (ej. dashboard/page.tsx, projects/page.tsx)\n    │   │   └── ThemeProviderClient.tsx # Proveedor de tema para el lado del cliente (MUI, etc.)\n    │   ├── components/             # Componentes UI reutilizables\n    │   │   ├── add_cards/          # Componentes para \"añadir tarjetas\" (nombre ambiguo)\n    │   │   │   └── ...\n    │   │   ├── component-dashboard/  # Componentes específicos para el dashboard\n    │   │   │   └── ...\n    │   │   ├── component-projects/   # Componentes específicos para la sección de proyectos\n    │   │   │   └── ...\n    │   │   ├── component-tecnology/  # Componentes relacionados con tecnologias\n    │   │   │   └── ...\n    │   │   ├── component-vacancies/  # Componentes para la gestión de vacantes\n    │   │   │   └── ...\n    │   │   ├── components-collaborators/ # Componentes para colaboradores/usuarios\n    │   │   │   └── ...\n    │   │   ├── configuration/      # Componentes para la configuración\n    │   │   │   └── ...\n    │   │   ├── LoadingAnimation/   # Componente de animación de carga\n    │   │   │   └── ...\n    │   │   ├── login/              # Componentes para la página de login\n    │   │   │   └── ...\n    │   │   ├── navbar/             # Componente de la barra de navegación\n    │   │   │   └── ...\n    │   │   ├── notification/       # Componente para mostrar notificaciones\n    │   │   │   └── ...\n    │   │   ├── register/           # Componentes para la página de registro\n    │   │   │   └── ...\n    │   │   ├── resetPassword/      # Componentes para la funcionalidad de reseteo de contraseña\n    │   │   │   └── ...\n    │   │   ├── SearchCard/         # Componente de tarjeta de búsqueda o para mostrar resultados\n    │   │   │   └── ...\n    │   │   └── shearch/            #  Componentes relacionados con búsqueda\n    │   │       └── ...\n    │   ├── services/               # Lógica para interactuar con APIs externas (el backend)\n    │   │   └── api.tsx             # Funciones o instancia configurada para llamadas a la API\n    │   └── types/                  # Definiciones de tipos TypeScript\n    │       └── interface.ts        # Interfaces y tipos personalizados\n    ├── tailwind.config.ts          # Configuración de Tailwind CSS\n    ├── trace                       # (Archivo 'trace',  log)\n    ├── tsconfig.json               # Configuración del compilador TypeScript\n    └── yarn.lock                   # Lockfile de Yarn (indica que podrían usar Yarn)"
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nPropósito: Proporcionar la interfaz de usuario para todas las funcionalidades del sistema."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\ntecnologia: Node.js, Express, MongoDB (con Mongoose), JWT, Socket.IO."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nback/\n└── planilla-rubik-back/\n    ├── .env                        # Variables de entorno (conexión a BD, puerto, secretos JWT, etc.)\n    ├── .gitignore                  # Archivos y carpetas a ignorar por Git\n    ├── .gitlab-ci.yml              # Configuración de CI/CD para GitLab\n    ├── .trace                      # (Archivo 'trace')\n    ├── .vscode/                    # Configuración específica del editor VS Code para este proyecto\n    │   └── settings.json           # Ejemplo: formateo, linters específicos para el workspace\n    ├── controllers/                # Lógica de manejo de las peticiones HTTP (la \"C\" de MVC)\n    │   ├── collaborator.js         # Controlador para la entidad/recurso \"colaborador\"\n    │   ├── configuration.js        # Controlador para configuraciones o entidades relacionadas\n    │   ├── infocolaborator.js      # Controlador para información detallada de colaboradores\n    │   ├── notification.js         # Controlador para notificaciones\n    │   ├── projects.js             # Controlador para proyectos\n    │   ├── tecnology.js            # Controlador para tecnologias\n    │   ├── user.js                 # Controlador para usuarios (autenticación, perfiles)\n    │   └── vacancie.js             # Controlador para vacantes\n    ├── database/                   # Módulo para la conexión a la base de datos\n    │   └── connection.js           # Lógica para establecer la conexión con MongoDB (usando Mongoose)\n    ├── index.js                    # Punto de entrada principal de la aplicación Node.js/Express\n    ├── models/                     # Definición de los esquemas de datos para Mongoose (la \"M\" de MVC)\n    │   ├── collaborator.js         # Modelo Mongoose para \"colaborador\"\n    │   ├── configuration.js        # Modelo Mongoose para \"configuration\"\n    │   ├── infocolaborator.js      # Modelo Mongoose para \"infocolaborator\"\n    │   ├── notification.js         # Modelo Mongoose para \"notification\"\n    │   ├── projects.js             # Modelo Mongoose para \"projects\"\n    │   ├── tecnology.js            # Modelo Mongoose para \"tecnology\"\n    │   ├── user.js                 # Modelo Mongoose para \"user\"\n    │   └── vacancie.js             # Modelo Mongoose para \"vacancie\"\n    ├── node_modules/               # Dependencias del proyecto (generado por npm/yarn)\n    │   └── ...\n    ├── package-lock.json           # Lockfile de NPM (indica que se usa NPM)\n    ├── package.json                # Metadatos del proyecto, scripts y dependencias\n    ├── README.md                   # Documentación del proyecto backend\n    ├── routes/                     # Definición de los endpoints de la API y su asociación con controladores\n    │   ├── collaborator.js         # Rutas para el recurso \"colaborador\"\n    │   ├── configuration.js        # Rutas para \"configuration\"\n    │   ├── infocolaborator.js      # Rutas para \"infocolaborator\"\n    │   ├── notification.js         # Rutas para \"notification\"\n    │   ├── projects.js             # Rutas para \"projects\"\n    │   ├── tecnology.js            # Rutas para \"tecnology\"\n    │   ├── user.js                 # Rutas para \"user\" (ej. /api/user/register, /api/user/login)\n    │   └── vacancie.js             # Rutas para \"vacancie\"\n    └── services/                   # Lógica de negocio auxiliar o servicios específicos\n        └── jwt.js                  # Funciones para generar y verificar JSON Web Tokens (JWT)\nPropósito: Gestionar la lógica de negocio, persistencia de datos, autenticación, y comunicación en tiempo real con el frontend. Puede interactuar con el Motor de IA."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\n3. Motor de IA (SIMULADOR_1 / software-team-builder)"
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\ntecnologia: Python, FastAPI, spaCy (NLP), FAISS, Pandas.\nUbicación: SIMULADOR_1/software-team-builder (o su ruta correspondiente)\nEstructura Clave:"
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🏗️ Arquitectura del Sistema\n\nRubik_IA/\n└── software-team-builder/\n    ├── .env                        # Variables de entorno para configuración\n    ├── .gitignore                  # Especifica archivos no rastreados intencionalmente por Git\n    ├── app/                        # Código principal de la aplicación backend (FastAPI)\n    │   ├── __init__.py             # Hace de 'app' un paquete Python\n    │   ├── ai_assistants/          # Módulos relacionados con el asistente de IA\n    │   │   ├── __init__.py         # Hace de 'ai_assistants' un subpaquete\n    │   │   ├── chat_processor.py   # Lógica para procesar conversaciones/chat\n    │   │   └── intent_detection.py # Lógica para detectar la intención del usuario\n    │   ├── auth/                   # Módulos de autenticación y autorización\n    │   │   ├── __init__.py         # Hace de 'auth' un subpaquete\n    │   │   └── router.py           # Endpoints de API para autenticación\n    │   ├── dependencies.py         # Funciones de dependencia para FastAPI (ej. obtener usuario actual)\n    │   ├── initialize.py           # Scripts o lógica de inicialización de la aplicación\n    │   ├── main.py                 # Punto de entrada principal de la aplicación FastAPI\n    │   ├── routers/                # Definición de los endpoints/rutas de la API\n    │   │   ├── __init__.py         # Hace de 'routers' un subpaquete\n    │   │   ├── chat.py             # Endpoints de API para la funcionalidad de chat\n    │   │   └── teams.py            # Endpoints de API para la gestión/recomendación de equipos\n    │   └── services/               # Lógica de negocio y servicios principales\n    │       ├── __init__.py         # Hace de 'services' un subpaquete\n    │       ├── data_processing.py  # Funciones para procesar los datos de entrada\n    │       ├── embeddings.py       # Lógica para generar o manejar embeddings vectoriales\n    │       └── history_manager.py  # Gestión del historial de interacciones o datos\n    ├── config.py                   # Archivo de configuración general de la aplicación\n    ├── data/                       # Directorio para datasets y archivos de datos\n    │   ├── empleados_software.csv\n    │   ├── employees_for_mongo.json\n    │   ├── history.json\n    │   ├── script_csv_to_json.py   # Script para convertir CSV a JSON\n    │   └── users_mindfactory.csv\n    ├── index.html                  #  página de demo  (simulador input/output postman en html)\n    ├── models/                     # Almacenamiento de modelos de IA precalculados o artefactos\n    │   └── embeddings.faiss        # Ejemplo: índice FAISS para búsqueda de similitud\n    ├── readme_1.txt                # Archivo README adicional o notas\n    ├── Readme.md                   # Documentación principal del proyecto\n    ├── recommendation_engine.py    # Módulo principal con el algoritmo de recomendación\n    ├── requirements_render.txt     # (Asumiendo corrección de 'requeriments') Dependencias para un entorno específico (ej. Render)\n    ├── requirements.txt            # Lista de dependencias Python del proyecto\n    ├── script.js                   # script  para el index.html \n    ├── start.sh                    # Script para iniciar la aplicación (ej. con Uvicorn para FastAPI)\n    ├── tests/                      # Directorio para pruebas (unitarias, de integración)\n    │   └── ...                     # Contenido de las pruebas\n    └── venv/                       # Entorno virtual de Python (no se versiona)\n        └── ...\nPropósito: Proporcionar capacidades de recomendación inteligente, procesamiento de lenguaje natural y análisis avanzado de datos para la formación de equipos o asignación de recursos."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nLenguajes: JavaScript (Node.js), TypeScript, Python."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nFrontend: Next.js, React, Tailwind CSS, Material-UI."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nMotor de IA: Python, FastAPI, spaCy, FAISS, Pandas, Scikit-learn."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nGestión de Paquetes: NPM (y/o Yarn en frontend - se recomienda estandarizar), Pip (Python)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nCI/CD: GitLab CI/CD (indicado por archivos .gitlab-ci.yml)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\n🛠️ Instalación y Ejecución (General)\nPara correr el sistema completo localmente, cada componente debe ser configurado y ejecutado en su propia terminal:"
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nBase de Datos MongoDB: Asegurar que una instancia de MongoDB esté accesible (local o remota)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nNavegar a su directorio.\nConfigurar su entorno virtual y .env.\nInstalar dependencias (pip install -r requirements.txt).\nEjecutar (uvicorn app.main:app --reload o según su README.md).\nPuerto por defecto (ej. 8000)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nNavegar a su directorio.\nConfigurar su archivo .env (con la URI de MongoDB, puerto, secreto JWT, y opcionalmente la URL del Motor de IA si lo consume).\nInstalar dependencias (npm install).\nEjecutar (npm start).\nPuerto por defecto (ej. 3900)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nNavegar a su directorio.\nConfigurar su archivo .env.local (con NEXT_PUBLIC_API_URL apuntando al puerto del Backend API local).\nInstalar dependencias (npm install o yarn install).\nEjecutar (npm run dev o yarn dev).\nPuerto por defecto (ej. 3000)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\n(Consulte los README.md específicos de cada proyecto para instrucciones detalladas de instalación y configuración)."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nEl usuario accede al Frontend (http://localhost:3000).\nEl Frontend realiza peticiones (HTTP y Socket.IO) al Backend API (http://localhost:3900) para:\nAutenticación de usuarios.\nObtención y guardado de datos de planillas, proyectos, colaboradores.\nNotificaciones en tiempo real."
+  },
+  {
+    "source": "Readme_General.md",
+    "text": "Contexto: 🚀 tecnologias y Herramientas Clave\n\nPara funcionalidades de recomendación avanzada, el Backend API puede realizar peticiones al Motor de IA (http://localhost:8000).\nEl Motor de IA procesa la solicitud y devuelve las recomendaciones al Backend API.\nEl Backend API reenvía la información relevante al Frontend para su visualización."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: General\n\n# Software Team Builder - Documentación\n\n![Software Team Builder](https://i.imgur.com/JKvQ8aE.png)"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 📌 Descripción\n\n**Software Team Builder** es una aplicación inteligente para construir equipos técnicos óptimos basados en habilidades, experiencia y compatibilidad con los requerimientos del proyecto. Utiliza técnicas de IA y recomendación personalizada según criterios técnicos y presupuesto."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Diagrama de Componentes\n\n```plaintext\n\n┌─────────────────┐     ┌─────────────────────┐     ┌──────────────────┐\n│   FastAPI App   │ ◄── │  Team Recommender   │ ◄── │  SentenceBERT    │\n└─────────────────┘     └─────────────────────┘     └──────────────────┘\n        ▲                       ▲                         ▲\n        │                       │                         │\n        ▼                       ▼                         ▼\n┌─────────────────┐     ┌─────────────────────┐     ┌──────────────────┐\n│  REST Endpoints  │     │  Recommendation     │     │   FAISS Index    │\n│                 │     │  Engine             │     │                  │\n└─────────────────┘     └─────────────────────┘     └──────────────────┘\n```json"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Decisiones Técnicas\n\n- **FastAPI**: Elegido por su rendimiento, soporte nativo para async/await y generación automática de docs OpenAPI.\n- **Sentence-BERT**: Para embeddings semánticos que permiten entender descripciones textuales de proyectos y perfiles.\n- **FAISS**: Optimizado para búsqueda de similitud en espacios vectoriales de alta dimensión.\n- **Pandas**: Manipulación eficiente de los datos de empleados.\n- **React + Vite**: Frontend moderno con buen rendimiento y experiencia de desarrollo."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Backend\n\n```bash\n# Clonar el repositorio\ngit clone https://github.com/tu-usuario/software-team-builder.git\ncd software-team-builder\n\n# Crear entorno virtual (recomendado)\npython -m venv venv\nsource venv/bin/activate  # Linux/Mac\n.\\venv\\Scripts\\activate   # Windows\n\n# Instalar dependencias\npip install -r requirements.txt\n\n# Descargar/colocar los datos\ncp empleados_software.csv data/empleados_software.csv\n\n# Crear embeddings\npython app/initialize.py\n\n# Ejecutar el servidor\nuvicorn app.main:app --reload\n```plaintext"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Frontend\n\n```bash\ncd frontend\nnpm install\nnpm run dev\n```plaintext"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 📊 Endpoints Principales\n\n| Endpoint | Método | Descripción |\n|----------|--------|-------------|\n| `/api/teams/generate` | POST | Genera un nuevo equipo técnico |\n| `/api/teams/history` | GET | Obtiene historial de equipos generados |\n| `/api/teams/last-team` | GET | Obtiene el último equipo generado |\n| `/api/chat` | POST | Endpoint para el chatbot de recomendaciones |"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Ejemplo de Request\n\n```json\nPOST /api/teams/generate\nHeaders: {\"Content-Type\": \"application/json\"}\nBody:\n{\n    \"project_description\": \"Desarrollo de aplicación web con React y Node.js\",\n    \"team_structure\": {\n        \"backend\": 2,\n        \"frontend\": 2,\n        \"devops\": 1\n    },\n    \"budget\": 50000,\n    \"criteria\": {\n        \"backend\": {\n            \"Node.js_exp\": 0.7,\n            \"ingles_avanzado\": 1\n        },\n        \"frontend\": {\n            \"React_exp\": 0.8\n        }\n    }\n}\n```bash"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 🧪 Pruebas\n\nEjecutar todas las pruebas:\n\n```bash\npytest --cov=app tests/\n```bash\n\nCobertura actual:\n\n- Recommendation Engine: 95%\n- API Endpoints: 90%"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 🧩 Estructura del Proyecto\n\nsoftware-team-builder/\n├── app/                  # Código backend\n│   ├── ai_assistant/\n                    |__ __init__.py\n                    |__ chat_processor.py\n                    |__ intent_detection.py     \n    |__ auth/\n            |__ init__.py\n            |__ router.py\n│   ├── routers/          # Endpoints de la API\n             |__init__.py\n             |__ chat.py\n             |__ teams.py\n│   ├── services/        # Servicios principales\n             |__init__.py\n             |__ data_processing.py\n             |__ embeddings.py\n             |__ history_manager.py\n    |__ init__.py\n│   ├── main.py           # Punto de entrada\n│   └── initialize.py\n    |__ Dockerfile    \n    |__ recomendation_engine.py           # Otros módulos\n├── data/                 # Datos de empleados\n     |__empleados_software.csv\n├── frontend/             # Aplicación React\n│   ├── public/           # Assets públicos\n│   └── src/              # Código fuente\n      |__App.css\n      |__App.jsx\n      |__Dockerfile\n      |__ Index.css\n      |__ index.html\n      |__ main.jsx\n      |__ nginx.config\n      |__ package-lock.json\n      |__ package.json\n      |__vite.config\n├── models/               # Modelos de IA\n    |__embeddings.faiss\n    |__employess.faiss\n├── tests/                # Pruebas unitarias\n|__ venv\n|__ .env\n|__ .gitignore\n|__ config.py\n|__ docker-compose.yml\n|__ dockerignore\n|__ Readme.md\n|__ requirements.txt                  # Archivos de configuración\n```"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 🛠️ Extensibilidad\n\nEl sistema está diseñado para:\n\n- Añadir nuevos roles técnicos: Modificar `_calculate_role_score()` en `recommendation_engine.py`\n- Integrar nueva lógica de selección: Añadir métodos personalizados\n- Cambiar almacenamiento de historial: Implementar nueva clase que herede de `HistoryManager`\n- Escalar horizontalmente: Diseño stateless permite múltiples instancias"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 💡 Ejemplo de Uso\n\n1. **Generar equipo**:\n   - Describe tu proyecto (\"app móvil con backend en Python\")\n   - Especifica estructura del equipo (2 backend, 1 frontend)\n   - Define presupuesto y criterios adicionales\n\n2. **Chatbot**:\n   - Haz preguntas sobre tecnologías recomendadas\n   - Consulta sobre combinaciones de habilidades\n   - Pide análisis de equipos anteriores"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Opción 2: AWS EC2\n\n1. Crear instancia EC2 (t3.medium recomendado)\n2. Instalar dependencias\n3. Configurar Nginx como reverse proxy\n4. Ejecutar con Gunicorn:\n\n```bash\ngunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app\n```"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: 🤝 Contribución\n\n1. Haz fork del proyecto\n2. Crea tu rama (`git checkout -b feature/AmazingFeature`)\n3. Haz commit de tus cambios (`git commit -m 'Add some AmazingFeature'`)\n4. Haz push a la rama (`git push origin feature/AmazingFeature`)\n5. Abre un Pull Request"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: ✉️ Contacto\n\nPara preguntas o soporte, contacta al mantenedor del proyecto.\n\n---\n\nApi_swagger  \n\nhttp://localhost:8000/docs   ##  prueba de endpoints"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nClaro, aquí tienes un resumen de los pasos y componentes involucrados en la implementación de esta etapa de autenticación básica:"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nObjetivo: Añadir una pantalla de inicio de sesión (login) para que solo usuarios registrados puedan acceder a la interfaz principal de la aplicación \"Software Team Builder\"."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nSe creó una nueva base de datos (team_builder_auth) y una tabla users."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nEsta tabla almacena username y password (actualmente en texto plano, ¡lo cual NO es seguro para producción!)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nSe insertó un usuario de ejemplo (admin/password123)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nNuevo Endpoint: Se creó un endpoint específico para el login: POST /api/auth/login."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nLógica de Verificación: Este endpoint recibe username y password, se conecta a la base de datos MySQL y compara las credenciales recibidas con las almacenadas."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nNuevo Router: La lógica y el endpoint se encapsularon en un nuevo archivo app/auth/router.py."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nConexión Segura a BD: Se configuró la conexión usando mysql-connector-python y se cargaron las credenciales de forma segura desde un archivo .env."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nIntegración: Se actualizó app/main.py para incluir el nuevo auth_router y asegurarse de que las peticiones CORS desde el frontend estén permitidas."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nNuevo Componente: Se creó un componente reutilizable LoginPage.jsx (con su archivo CSS LoginPage.css) que contiene el formulario de usuario y contraseña."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nEstado de Autenticación: El componente principal App.jsx ahora maneja un estado (isAuthenticated, username) para saber si el usuario ha iniciado sesión."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nRenderizado Condicional: App.jsx ahora decide qué mostrar:"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nSi isAuthenticated es false, renderiza el componente LoginPage."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nSi isAuthenticated es true, renderiza la interfaz principal del constructor de equipos (el formulario y los resultados que ya tenías)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nLlamada a la API: El componente LoginPage realiza la llamada fetch al endpoint /api/auth/login del backend al enviar el formulario."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nManejo de Respuesta: Si el login es exitoso (respuesta 200 OK del backend), se llama a una función (handleLoginSuccess) en App.jsx para actualizar el estado isAuthenticated a true. Si falla, se muestra un mensaje de error."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nLogout: Se añadió un botón y una función (handleLogout) en App.jsx para volver a poner isAuthenticated en false y mostrar de nuevo la pantalla de login."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nApp.jsx actualiza su estado basado en la respuesta y muestra la interfaz principal o un error en LoginPage."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nEn esencia, se ha añadido una \"barrera\" de autenticación simple al inicio de la aplicación, separando la lógica de login en componentes y endpoints dedicados, y utilizando el estado en React para controlar qué interfaz ve el usuario."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*********************************************************************************************************\nLogica del proyecto \n******************************************************"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nFlujo General de Funcionamiento\nEl sistema funciona en dos fases principales:\nInicialización (__init__): Cuando crea una instancia deRecomendador de SoftwareTeam, se prepara todo lo necesario:\nSe cargan y preprocesan los datos de los empleados (limpieza, normalización de roles, etc.).\nSe definen las tecnologías conocidas y cómo mapearlas (mapeo tecnológico).\nSe normalizan los valores numéricos (experiencia, salario, etc.) para que se puedan comparar de forma justa en el puntaje.\nSe guarde una copia de los valores originales (antes de normalizar) para usarlos en la salida (ej. salario real).\nRecomendación (equipo recomendado): Cuando llamas a esta función con los requisitos del proyecto:\nItera por cada rol solicitado (backend, frontend, etc.).\nFiltra a los candidatos que pertenecen a ese rol.\nAplica un Filtro Estricto (¡Clave!): Si se piden tecnologías específicas para ese rol y el modo de filtro estricto está activado (principaloexp), eliminar a los candidatos que NO cumplan este requisito mínimo (tener la tecnología como principal O tener una experiencia mínima).\nCalcular unpuntajepara CADA candidato restante, basado en varios factores (tecnología requerida, experiencia general, capacitación, etc.).\nOrdena a los candidatos (ya filtrados) por puntuación (mejor primero) y luego por salario (más bajo primero, como desempate).\nReúna a todos los candidatos preseleccionados de todos los roles en una lista global.\nRealízaloSelección Final: Ordena la lista global por puntaje/salario y va eligiendo a los mejores candidatos para cada rol hasta llenar las vacantes solicitadas,siempre y cuando no se exceda el presupuesto total.\nDevuelve el equipo final, el presupuesto utilizado y restante.\nComponentes Clave y Puntos de Modificación\nAquí te explico cada parte importante y dónde modificarla:\n__init__(self, df)(Inicialización)\nPropósito:Prepare el objeto recomendador.\nModificaciones típicas:Poco probable que necesites cambiar esto, a menos que la estructura fundamental de tus datos cambie restrictivamente.\n_preprocess_data(propio, df)(Preprocesamiento)\nPropósito:Limpiar y estandarizar los datos del CSV.\nDónde modificar:\nasignación de roles: Si quieres cambiar cómo se agrupan los roles (ej., si 'Arquitecto' debe ser 'backend' en lugar de 'devops'), modifica este diccionario.\nExtracción detecnologías_principales: Si tus columnas booleanas de tecnología principal tienen otro formato (no terminan en_principal), ajusta la lógica que buscacolumnas booleanas tecnológicas.\nManejo de Booleanos (columnas booleanas para comprobar): Si tienes otras columnas sí/no relevantes (ej., 'dispuesto_a_viajar'), añádelas aquí para asegurar que se traten como booleanos.\nConversión a numérico: Si tienes otras columnas que deben ser números pero no terminan en_expo_proyectos, añádelas atodas las columnas numéricas.\n_inicializar_mapping_tecnológico(self)(Mapeo de Tecnologías)\nPropósito:Definir qué nombres de tecnología reconoce el sistema y cómo los estandariza internamente.\nDónde modificar:\nAñadir Tecnologías:Si tu CSV tiene columnas_expy_principalpara tecnologías no listadas (ej.,Swift_exp,Swift_principal), añade una entrada como'rápido': ['rápido']. Laclave('rápido') es importante porque se usará para buscarswift_exp.\nAñadir variantes:Si una tecnología se escribe de varias formas (ej., 'postgres', 'postgresql', 'pgsql'), añádelas a la lista de variantes:'postgresql': ['postgresql', 'postgres', 'pgsql'].\n¡Crucial! Coincidencia Clave <-> Columna_exp: Asegúrate de que laclavedel mapeo (ej.,'nodo') coincide con el prefijo de tu columna de experiencia (el código buscará'exp_nodo') Si tu columna se llamaExp. node.js, la clavedebeser'node.js'(o debes renombrar la columna en el CSV).\n_normalize_tech_name(self, tecnología)(Normalización de Nombres Tech)\nPropósito:Convierta un nombre de tecnología de la entrada del usuario (o del CSV) a su clave estándar definida en el mapeo.\nModificaciones típicas:Generalmente no se modifica, depende del_inicializar_mapeo_tecnológico.\n_get_csv_col_name(self, nombre_de_estándar_tecnológico, sufijo)(Obtener nombre de columna CSV)\nPropósito:Dada una clave de tecnología normalizada (ej., 'python') y un sufijo ('_exp' o '_principal'), intenta encontrar el nombre exacto de la columna correspondiente en tu CSV original (ej.,Python_exp,Node.js_principal). Esto es vital para los filtros estrictos y el puntaje.\nDónde modificar:Si la lógica actual para adivinar el nombre original (mayúscula, casos especiales como 'Node.js') no funciona para tus nombres de columna, necesitarás ajustar la lógica aquí o (más fácil) estandarizar tus nombres de columna en el CSV.\n_normalizar_valores_numéricos(self)(Normalización Numérica)\nPropósito:Escalar valores numéricos (0-1) para que elpuntajemar justo\nDónde modificar:\nColumnas a Normalizar:Si desea normalizar columnas numéricas adicionales, asegúrese de que se incluyan encolumnas_a_normalizar.\nManejo deYaya: Actualmente rellena los valores faltantes con 0 (fillna(0)) antes de escalar. Podrías cambiarlo para usar la media (.fillna(df_para_normalizar[col].mean())) o mediana si tiene más sentido para alguna columna.\ncalcular_puntuación(self, fila, técnicas_requeridas)(Cálculo de puntuación)\nPropósito:Asignar una puntuación a cada candidato basada en múltiples factores. ¡Aquí define qué es \"mejor\"!\nDónde modificar:\nPeso de Tecnología Requerida (puntuación técnica): Cambia el multiplicador (* 20.0). Un número más alto hace que la tecnología específica sea mucho más importante.\nPeso de Experiencia General (puntuación de exp): Cambia los multiplicadores paraaños_experiencia(* 3.0) yproyectos_completados(* 1.5).\nPeso de Capacitación (puntuación de entrenamiento): Cambia los multiplicadores paracertificaciones(* 1.0) yhoras_capacitacion(* 0.5).\nBono (puntuación de bonificación): Cambia los puntos fijos poringlés avanzado(+ 1.5) olíder_equipo(+ 2.5). Puedes añadir bonus por otros factores booleanos.\nPonderación final: Modifica los porcentajes en la combinación final (ej.,puntuación técnica * 0,60,puntuación de exp * 0.25, etc.) para cambiar la importancia relativa global de cada componente. ¡Asegúrate de que sumen aproximadamente 1.0 (o ajusta todos proporcionalmente)!\nAñadir nuevos factores: Puedes leer otras columnas defila(ej.,fila.get('ubicacion')) y añadir lógica para incorporarlas al score. Recuerda normalizarlas si son numéricas.\nrecomendar_equipo(yo mismo, ...)(Lógica Principal de Recomendación)\nPropósito:Orquestar todo el proceso de selección.\nDónde modificar:\nMODO DE FILTRO ESTRICTO(al inicio del archivo):Cambia entre'principal','exp', o'ninguno'para controlar cuán estricto es el filtro inicial de tecnología. Es la forma más fácil de exigir tecnologías.\nUMBRAL DE EXP MÍNIMO(al inicio del archivo):Ajusta el umbral si lo usasMODO DE FILTRO ESTRICTO = 'exp'.\nLógica del Filtro Estricto (dentro deequipo recomendado): Si necesitas una lógica de filtrado más compleja (ej., requerir experiencia entodaslas tecnologías pedidas en lugar deal menos una), modifica la sección delconsulta_str = \" o \".join(...)Podrías cambiar' o 'por' y '.\nLógica de Selección Final: La parte final que itera sobrecandidatos_del_equipo_recomendadosy aplica el presupuesto es bastante estándar, pero podrías ajustarla si tienes reglas de negocio complejas (ej., no permitir más de X personas de nivel 'JR').\nEn resumen:\nPara exigir tecnologías:EE.UUMODO_FILTRO_ESTRICTO = 'principal'(y asegúrese de que los nombres entecnologías explícitascoinciden con tus columnas_principal) oMODO DE FILTRO ESTRICTO = 'exp'.\nPara cambiar la importancia de factores (tech vs exp general):Ajusta los pesos y multiplicadores encalcular_puntuación.\nPara reconocer nuevas tecnologías:Actualiza_inicializar_mapeo_tecnológicoy verifica que las columnas_expy_principalexistan y se nombren correctamente.\nPara cambiar cómo se definen los roles:Modificaasignación de rolesen_preprocesar_datos."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nNo es \"IA\" en el sentido moderno de Machine Learning (Aprendizaje Automático), pero es una herramientainteligenteBasado en algoritmos y reglas.\nAq\n¿Qué hace?\nToma **datosdatos estructurados(tu CSV de\nAplicareglas predefinidas(mapa\nUtilizar unalgoritmo de puntuaciónestafapesos definidos manualmente(tú decides cuánto vale la\nRealizar **optimoptimización restringida(encuentro\nUtiliza técnicas deprocesamiento de datos(comoEscalador mínimo-máximode scikit-learn)aprenderpatrones compl\n¿QuéNO¿Hace (que haría una IA basada en Machine Learning)?\nAprender de la experiencia:No mejora sus\nDescubrir patrones ocultos:No analiza la dedescripción del proyecto) usaninferirqué habili\nAdaptarse dinámicamente:No se ajusta a su estrado\nHacer predicciones complejas:No\nConclusión y cómo describirla:\nPuedes describirlo\nUna herramienta avanzada de recomendación de equipos.\nUn sistema de soporte a la decisión.\nUn motor de reglas y optimización para la formación de equipos.\nUna aplicación basada en algoritmos que automatiza la selección de personal.\nSi quiutiliza técnicas inspiradas en la IAo **elementos deelementos de sistemas expertos, como:\nBase de conocimiento:Tu CSV actúa como una base\nMotor de inferencia:Yocalcular_puntuaciónactúan\nEn resumen:Es unasistema experto algorítmicoque una IA de aprendiz"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*******************************\nempezando como IA \n*****************************\n (PNL Simple para Techs):Es probablemente la más directa y con mayor impacto inicial para hacer la herramienta más \"conversacional\" o inteligente desde la perspectiva del usuario."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nInstalarspaCyy descargar un modelo de lenguaje:Si no lo has hecho, abre tu terminalen el entorno donde ejecutas tu backend de Pythony corre:\npip install spacy\npython -m spacy download es_core_news_sm\nUtilice el código con precaución .\nIntento\n(EE.UUen_core_web_smsi tus descripciones de proyecto estarán en inglés).\nModificarmotor_de_recomendación.py:\nImportarspaCy.\nCargar el modelo de lenguaje en el__init__.\nModificarequipo recomendadopara procesardescripción del proyecto, extraer tecnologías inferidas y combinarlas con lastecnologías explícitas.\nModificarAplicación.jsx(Opcional pero recomendado):Agregue una forma visual para indicar al usuario qué tecnologías se infirieron de la descripción."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\nEscenario 1: Prueba Básica (Sin Foco en PNL)\nObjetivo:Verificar\nDescripción del proyecto:`Aplicación simpleAplicación sencilla de gestión de tareas.(Algodón co\nEstructura del equipo:\nBackend:1\nInterfaz:1\nDevOps0\nControl de calidad:0\nPresupuesto Máximo: 150000(Un presupuesto razonable).\nTecnologías Clave:\nBackend: Marca la casilla `PythoPitón.\nFrontend: Marca la casilla `RReaccionar.\nDevOps: (No se aplica porque\nQué esperar:\nmi\nLa lista de \"Tecnologías Inferidas\"\nEl equipo recomendado\nEscenario 2: Prueba de PNL (Descripción Rica)\nObjetivo:Verifica que el PNL extrae tecnologías de la descripción y que e\nDescripción del proyecto:(Usa el ejemplo detallado o uno similar adaptado a tus da\nNecesitamos desarrollar una API RESTful segura usando Python y el framework Flask para gestionar usuarios y productos. Además, requerimos una interfaz de frontend moderna construida con React y TypeScript. El despliegue se realizará en AWS usando contenedores Docker y Kubernetes para la orquestación. Se usará PostgreSQL como base de datos.\nUtilice el código con precaución .\nEstructura del equipo:\nBackend:1\nInterfaz:1\nOperaciones de desarrollo:1\nControl de calidad:0\nPresupuesto Máximo: 300000(Más generoso para dar opciones)\nTecnologías Clave:\nDeja la mayoría sin marcar, la marca solo unaAWSen DevOps.\nQué esperar:\nInterfaz:La secciónpitón,matraz,reaccionar,mecanografiado,aws,estibador,Kubernetes, `publicarPostgreSQL(o los nombres normalizados corresponden\nBackend/Resultado:El equipo seleccionado debería reflejar est\nEscenario 3: Prueba de Filtro Estricto (MODO_FILTRO_ESTRICTO = 'principal')\nObjetivo:Asegurarse de que solo se seleccionan candidatos que te_principal = Verdadero.\nBackend:Asegúrate de queMODO DE FILTRO ESTRICTOesté configurado en `'principal'enmotor_de_recomendación.pyy reinicie el servidor backend.\nDescripción del proyecto:`Sistema backend conSistema backend con Java.(Simple).\nEstructura del equipo:\nBackend:2\nInterfaz0\nOperaciones de desarrollo:0\nControl de calidad:0\nPresupuesto Máximo: 250000.\nTecnologías Clave:\nBackend: Marcaexactamenteel nombre que aparece en tu columna_principal, por ejemplo,Java.Nomarcas otras.\nQué esperar:\nRegistros de backend:Deberías ver `yoINFORMACIÓN: Aplicando filtro estricto por Tecnología Principal...y una consulta como\\Java_pr\nResultado:Solo deberían aparecer candidatos backend pJava_principalen tu CSV seaVerdaderoSi nadie cumple, él\nEscenario 4: Prueba de Presupuesto Ajustado\nObjetivo:Ver cómo se comporta el\nDescripción del proyecto: Prototipo rápido con Node y React.\nEstructura del equipo:\nBackend:1\nEs1\nOperaciones de desarrollo:1\nControl de calidad:0\nPresupuesto Máximo: 90000(U\nTecnologías Clave:\nBackend: MarcaNode.js.\nFrontenReaccionar.\nDevOps: Marca `DoEstibador.\nQué esperar:\nEs positivo\nPuede que se seleccionepuntuación menor(pero\nElpresupuesto_restanteDebería ser muy bajo o cero. Verificarpresupuesto_utilizadono exceder el\nEscenario 5: Conflicto/Combinación (PNL + Explícitas)\nObjetivo:Ver cómo se manejan tecnologías inferidas y explícitas juntas.\nDescripción del proyecto:`Plataforma de análisis de datosPlataforma de análisis de datos con Python y visualizaciones en Javascript.\nEstructura del equipo:\nBackend:1\nInterfaz:1\nOperaciones de desarrollo:0\nControl de calidad:0\nPresupuesto Máximo: 200000.\nTecnologías Clave:\nBackend: MarcaJava(explícitamente diferente a la descripción).\nFrontend: MarcaReaccionar(explícitamente\nQué esperar:\nLa PNL te dirá: pitón,Javascript.\nTecnologías Finales Consideradas:Para el backend:Java(exppitón(inferida). Para Frontendreaccionar(explícita),Javascript(inferior\nResultado:El sistema buscará candidatos que idealmente cumplanembajadores(explícita e inferida) o al menos una de ellas, dependiendo del filtro y la puntuació"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n¡Excelente! Es fundamental entender cómo funciona \"debajo del capó\" para poder ajustarla a tus necesidades futuras. Aquí tienes una guía explicativa de `recommendation_engine.py`, enfocada en dónde modificar cada aspecto clave:"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **`__init__`**: Carga datos, preprocesa, define mapeos, normaliza números, carga modelo NLP.\n*   **`recommend_team`**:\n    *   Infiere tecnologías de la descripción (NLP).\n    *   Combina techs inferidas y explícitas.\n    *   **Por cada rol:**\n        *   Filtra candidatos por rol.\n        *   **Aplica Filtro Estricto (si está activo):** Elimina candidatos que no cumplen requisito mínimo de tecnología (`_principal` o `_exp`).\n        *   **Calcula Score:** Puntúa a los candidatos restantes según múltiples factores.\n        *   Ordena por score y salario.\n        *   Añade a lista global.\n    *   **Selección Final:** Elige de la lista global según presupuesto y estructura.\n    *   Devuelve resultado."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**2. Guía de Modificaciones: ¿Qué Quieres Cambiar y Dónde?**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**A. Si Quieres... Añadir/Modificar TECNOLOGÍAS Reconocidas:**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Hacer que el sistema reconozca una nueva tecnología (ej. \"Swift\") o diferentes formas de escribir una existente (ej. \"NodeJS\").\n*   **Dónde Modificar:**\n    1.  **`_initialize_tech_mapping(self)`:**\n        *   **Añadir Nueva:** Agrega una nueva entrada clave-valor. La *clave* debe ser el nombre estándar que usarás internamente y que (idealmente) coincide con el prefijo de tus columnas `_exp` (ej. `swift_exp`). El valor es una lista de cómo podría escribirse.\n            ```python\n            'swift': ['swift', 'swiftlang'], # Nueva tecnología\n            'node': ['node.js', 'node', 'nodejs', 'NodeJS'], # Añadir variante NodeJS\n            ```\n        *   **¡Importante!** Después de añadirla, asegúrate de que:\n            *   Tu archivo CSV tenga las columnas correspondientes (ej. `swift_exp`, `swift_principal`). Los nombres deben ser consistentes.\n            *   Actualices el `_create_reverse_tech_mapping` o la lógica en `_get_csv_col_name` si el nombre de la columna en el CSV no sigue un patrón simple (como `Node.js_principal`).\n    2.  **`_create_reverse_tech_mapping(self)` / `_get_csv_col_name(...)` (Posiblemente):** Si el nombre de la columna `_principal` o `_exp` en tu CSV es muy diferente del nombre estándar (ej. no es solo capitalizar), puede que necesites ajustar la lógica que busca el nombre de columna original para que lo encuentre correctamente, especialmente para el filtro por `_principal`.\n    3.  **`App.jsx` (Frontend):** Añade la nueva tecnología a la lista `availableTechs` para que aparezca como checkbox seleccionable por el usuario."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**B. Si Quieres... Cambiar Cómo se Definen los ROLES:**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Agrupar perfiles del CSV de manera diferente (ej. 'Arquitecto' ahora es 'Backend').\n*   **Dónde Modificar:**\n    *   **`_preprocess_data(self)` -> `role_mapping`**: Modifica el diccionario. Cambia a qué lista pertenece un perfil o añade nuevos roles estándar si es necesario.\n        ```python\n        role_mapping = {\n            'backend': ['backend', 'arquitecto'], # Arquitecto ahora es Backend\n            'frontend': ['frontend'],\n            # ... resto ...\n        }\n        ```\n*   **Consideraciones:** Asegúrate de que los nombres de rol que usas en el frontend (en `App.jsx` para la estructura y las tecnologías) coincidan con las *claves* de `role_mapping` (`backend`, `frontend`, etc.)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**C. Si Quieres... Ajustar la IMPORTANCIA de los Factores de Selección (El \"Corazón\" del Score):**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Cambiar qué es más importante al elegir un candidato (ej. priorizar más la experiencia general sobre la tecnología específica, o viceversa).\n*   **Dónde Modificar:**\n    *   **`calculate_score(self, row, required_techs)`:** Aquí es donde se define \"qué es bueno\".\n        *   **Peso Tecnología Específica (`tech_score`)**: Cambia el `* 20.0`. Un valor más alto = la tecnología requerida domina el score. Más bajo = influye menos.\n        *   **Peso Experiencia General (`exp_score`)**: Ajusta los `* 3.0` (años) y `* 1.5` (proyectos).\n        *   **Peso Capacitación/Certificaciones (`training_score`)**: Ajusta los `* 1.0` (certs) y `* 0.5` (horas).\n        *   **Bonus Fijos (`bonus_score`)**: Cambia los `+ 1.5` (inglés) y `+ 2.5` (liderazgo). Puedes añadir más bonus basados en otras columnas booleanas.\n        *   **Ponderación Final (Porcentajes)**: Modifica los `* 0.60` (tech), `* 0.25` (exp), `* 0.15` (training) en la línea `total_score = (...)`. Estos controlan la importancia *relativa* de cada bloque. Si cambias uno, considera ajustar los otros para que sigan sumando aproximadamente 1.0 (o para reflejar la nueva importancia relativa).\n            *   *Ejemplo:* Para dar MÁS peso a la experiencia general: `total_score = (tech_score * 0.40) + (exp_score * 0.45) + (training_score * 0.15) + bonus_score` (Ahora la experiencia es 45% y la tecnología 40%)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**D. Si Quieres... Cambiar la ESTRICTEZ del Requisito de Tecnología:**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Decidir si un candidato DEBE tener la tecnología pedida (y cómo) o si solo es un \"plus\".\n*   **Dónde Modificar:**\n    1.  **(Principal) Variables Globales al inicio del archivo:**\n        *   **`STRICT_FILTER_MODE`**: Cámbiala a:\n            *   `'principal'`: Exige `Tecnologia_principal == True`. Requiere que uses los nombres exactos de las columnas principales en la petición del frontend.\n            *   `'exp'`: Exige `Tecnologia_exp >= MIN_EXP_THRESHOLD`.\n            *   `'none'`: Sin filtro estricto, solo usa el bonus del score (comportamiento más flexible).\n        *   **`MIN_EXP_THRESHOLD`**: Ajusta el umbral (0 a 1) si usas `STRICT_FILTER_MODE = 'exp'`.\n    2.  **(Avanzado) Lógica del Filtro en `recommend_team`**: Si quieres una lógica más compleja (ej. requerir *todas* las tecnologías en lugar de *al menos una*), modifica la línea `query_str = \" or \".join(query_conditions)`. Cambiar `\" or \"` por `\" and \"` requeriría que se cumplan *todas* las condiciones del filtro."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**E. Si Quieres... Modificar Cómo Funciona el NLP (Inferencia de Descripción):**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Cambiar qué palabras clave se extraen o cómo se usan.\n*   **Dónde Modificar:**\n    1.  **`_infer_techs_from_description(self, description)`:**\n        *   **Extracción:** Cambia los `token.pos_ in [\"NOUN\", \"PROPN\"]` para incluir/excluir tipos de palabras (ej., añadir 'ADJ' para adjetivos técnicos). Ajusta el filtrado de `stop words` (`token.is_stop == False`).\n        *   **Modelo NLP:** Cambia `NLP_MODEL_NAME` al inicio del archivo si quieres usar otro modelo de spaCy (ej., uno más grande o para otro idioma). Recuerda descargarlo.\n    2.  **`recommend_team(...)` (Combinación de Techs):** Modifica la lógica donde se combinan `explicit_techs_normalized` e `inferred_standard_techs` si quieres una estrategia diferente (ej., que las inferidas solo se usen si no hay explícitas, o darles menos prioridad en el filtro/score)."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**F. Si Quieres... Añadir Nuevos Datos/Factores al Score o Filtro:**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Considerar una nueva columna del CSV (ej. \"ubicacion\", \"certificacion_especifica\").\n*   **Dónde Modificar (Requiere cambios en varios lugares):**\n    1.  **`_preprocess_data(self)`:** Asegúrate de que la columna se carga y se limpia (ej. convertir a tipo correcto, manejar nulos).\n    2.  **`_normalize_numeric_values(self)`:** Si el nuevo factor es numérico y quieres usarlo en el score de forma comparativa, añádelo a la lista de columnas a normalizar.\n    3.  **`calculate_score(self, ...)`:** Lee el valor de la nueva columna desde `row.get('nombre_nueva_columna')` y añádelo a la lógica del score (con su propio peso/multiplicador si es numérico, o como un bonus si es booleano).\n    4.  **`recommend_team(self, ...)` (Filtro):** Si quieres filtrar por este nuevo factor (ej. `ubicacion == 'Madrid'`), añade la condición al DataFrame `candidates` después de filtrar por rol (antes o después del filtro de tecnología).\n    5.  **`recommend_team(self, ...)` (Salida):** Añade el valor de la nueva columna al diccionario que se crea para cada miembro en `recommended_team_candidates` para que se incluya en la respuesta JSON.\n    6.  **`App.jsx` (Frontend):** Muestra el nuevo dato en la `member-card`."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n**G. Si Quieres... Ajustar el Manejo del Presupuesto:**"
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Objetivo:** Cambiar cómo se selecciona el equipo final respecto al presupuesto.\n*   **Dónde Modificar:**\n    *   **`recommend_team(self, ...)` (Selección Final):** La lógica actual ordena a *todos* los candidatos preseleccionados por score/salario y luego itera eligiendo a los mejores que quepan hasta llenar roles/presupuesto.\n        *   Podrías cambiar el ordenamiento secundario (ej. priorizar más experiencia sobre salario bajo si hay presupuesto de sobra).\n        *   Podrías implementar una lógica más compleja si tienes reglas como \"no gastar más del X% del presupuesto restante en una sola persona\"."
+  },
+  {
+    "source": "Readme_IA.md",
+    "text": "Contexto: Autenticazion\n\n*   **Al inicio del archivo `recommendation_engine.py`:**\n    *   `DEBUG_MODE = False / True`: Activa/desactiva logs detallados. ¡Muy útil!\n    *   `STRICT_FILTER_MODE = 'principal' / 'exp' / 'none'`: Controla el filtro estricto.\n    *   `MIN_EXP_THRESHOLD = 0.1`: Umbral para el modo `'exp'`.\n    *   `NLP_MODEL_NAME = \"es_core_news_sm\"`: Modelo de lenguaje spaCy a usar."
+  }
+]

@@ -1,0 +1,22 @@
+# software-team-builder/ia_rubik/render.yaml
+
+services:
+  # Define tu servicio web aquí
+  - type: web
+    name: ia-rubik-service  # El nombre de tu servicio
+    env: python             # El entorno de ejecución
+    repo: https://gitlab.mindfactory.ar/daniel.perco/ia_rubik.git # ¡LA URL DE TU REPO!
+    branch: master          # O 'main', la rama que quieres desplegar
+    plan: free              # El plan gratuito
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && python -m spacy download es_core_news_sm"
+    startCommand: "gunicorn -w 2 -k uvicorn.workers.UvicornWorker app.main:app"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      # --- ¡IMPORTANTE! ---
+      # Aquí NO pondremos los secretos. Usaremos el "Secret File" o el dashboard.
+      # Vamos a referenciar un grupo de entorno que crearemos en Render.
+      - fromGroup: rubik-ia-secrets

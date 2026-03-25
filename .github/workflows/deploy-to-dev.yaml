@@ -1,0 +1,24 @@
+name: Deploy to development
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ci-build:
+    uses: mindfactory-sw/mf-mindstack-gha/.github/workflows/mf-mindstack-build.yaml@main
+    secrets: inherit
+    with:
+      VERSION: development-${{github.run_number}}
+
+  deploy:
+    needs: [ci-build]
+    uses: mindfactory-sw/mf-mindstack-gha/.github/workflows/mf-mindstack-deploy.yaml@main
+    secrets: inherit
+    with:
+      ENVIRONMENT: development
+      VERSION: development-${{github.run_number}}

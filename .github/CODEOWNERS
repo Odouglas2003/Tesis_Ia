@@ -1,0 +1,6 @@
+# Team owner rule
+* @mindfactory-sw/proj-rubik
+
+# Specific rules
+.github @mindfactory-sw/mf-devops @mindfactory-sw/mf-admin
+CODEOWNERS @mindfactory-sw/mf-devops @mindfactory-sw/mf-admin
