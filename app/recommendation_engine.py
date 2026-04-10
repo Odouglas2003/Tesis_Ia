@@ -258,6 +258,32 @@ class SoftwareTeamRecommender:
             base_name = re.sub(r"[^\w.-]+", "_", std_name.strip()).strip("_")
         return f"{base_name}{suffix}"
 
+    def _build_roles_from_raw(self, row: pd.Series) -> List[Dict[str, Optional[str]]]:
+        role = row.get("rol_raw")
+        seniority = row.get("seniority_raw")
+
+        role_value = None if pd.isna(role) else str(role).strip()
+        seniority_value = None if pd.isna(seniority) else str(seniority).strip()
+
+        if not role_value and not seniority_value:
+            return []
+
+        return [{"rol": role_value, "seniority": seniority_value}]
+
+    def _parse_technologies(self, raw_value: Any) -> List[str]:
+        if isinstance(raw_value, list):
+            return [str(item).strip() for item in raw_value if str(item).strip()]
+        if raw_value is None or pd.isna(raw_value):
+            return []
+        if not isinstance(raw_value, str):
+            return []
+
+        return [
+            item.strip()
+            for item in re.split(r"[;,]", raw_value)
+            if item and item.strip()
+        ]
+
     def _preprocess_data(self, df: pd.DataFrame) -> pd.DataFrame:
         logger.info("Preprocessing data from Collaborator DataFrame...")
         if "_id" in df.columns:
@@ -267,13 +293,33 @@ class SoftwareTeamRecommender:
 
         df.set_index("id_col", inplace=True)
 
+        if "roles" not in df.columns:
+            df["roles"] = df.apply(self._build_roles_from_raw, axis=1)
+        else:
+            df["roles"] = df["roles"].apply(
+                lambda value: value if isinstance(value, list) else []
+            )
+
+        if "tecnologias" not in df.columns:
+            raw_tech_series = df.get(
+                "tecnologias_raw", pd.Series(index=df.index, dtype="object")
+            )
+            df["tecnologias"] = raw_tech_series.apply(self._parse_technologies)
+        else:
+            df["tecnologias"] = df["tecnologias"].apply(self._parse_technologies)
+
         df["nombre_completo"] = (
             df["first_name"].fillna("") + " " + df["last_name"].fillna("")
         ).str.strip()
         df["eval_desempeno"] = pd.to_numeric(df.get("eval_desempeno"), errors="coerce")
         df["sueldo"] = pd.to_numeric(df.get("sueldo"), errors="coerce")
+        horas_asignadas_source = (
+            df["horasAsignadas"]
+            if "horasAsignadas" in df.columns
+            else df.get("Carga_horaria_raw", pd.Series(0, index=df.index))
+        )
         df["horasAsignadas"] = pd.to_numeric(
-            df.get("horasAsignadas"), errors="coerce"
+            horas_asignadas_source, errors="coerce"
         ).fillna(0)
         df["rol_asignado"] = df["roles"].apply(
             lambda r: (

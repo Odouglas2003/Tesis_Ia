@@ -21,6 +21,8 @@ services:
     restart: always
     env_file:
       - .env
+    environment:
+      MONGO_DB_CONNECTION_STRING: mongodb://root:example@mongodb:27017/?authSource=admin
     depends_on:
       - mongodb
     ports:

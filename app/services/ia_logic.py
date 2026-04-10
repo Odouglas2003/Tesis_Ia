@@ -1172,12 +1172,17 @@ Mejora final: fallback si no entiende la intención
 
 """
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+def get_openai_client() -> OpenAI:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY no configurada")
+    return OpenAI(api_key=api_key)
 
 
 def extract_entities(user_query: str) -> dict | None:
 
     try:
+        client = get_openai_client()
 
         response = client.chat.completions.create(
             model="gpt-4-turbo-preview",

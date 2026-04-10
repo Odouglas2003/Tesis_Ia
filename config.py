@@ -18,7 +18,7 @@ class Config:
     MONGO_DB_CONNECTION_STRING = os.getenv(
         "MONGO_DB_CONNECTION_STRING"
     )  # ← Sin valor por defecto
-    MONGO_DB_NAME = "rubik_test"
+    MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "rubik_test")
     OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")  # ← Sin valor por defecto
 

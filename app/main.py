@@ -33,9 +33,15 @@ async def lifespan(app: FastAPI):
     app.state.engine_is_ready = False
 
     try:
+        openai.api_key = Config.OPENAI_API_KEY
+        openai_enabled = bool(Config.OPENAI_API_KEY)
 
         docs_path = "./docs"
-        if os.path.exists(docs_path):
+        if not openai_enabled:
+            logger.warning(
+                "OPENAI_API_KEY no configurada. Se omite la carga del vectorstore y /chat quedara no disponible."
+            )
+        elif os.path.exists(docs_path):
             loader = DirectoryLoader(
                 docs_path,
                 glob="**/*.md",
@@ -60,10 +66,17 @@ async def lifespan(app: FastAPI):
         else:
             logger.warning(f"ADVERTENCIA: La carpeta '{docs_path}' no existe.")
 
+        mongo_kwargs = {"serverSelectionTimeoutMS": 10000}
+        connection_string = Config.MONGO_DB_CONNECTION_STRING or ""
+        connection_string_lower = connection_string.lower()
+        if connection_string.startswith("mongodb+srv://") or any(
+            flag in connection_string_lower for flag in ("tls=true", "ssl=true")
+        ):
+            mongo_kwargs["tlsCAFile"] = certifi.where()
+
         mongo_client = MongoClient(
             Config.MONGO_DB_CONNECTION_STRING,
-            tlsCAFile=certifi.where(),
-            serverSelectionTimeoutMS=10000,
+            **mongo_kwargs,
         )
         mongo_client.admin.command("ping")
         app.state.mongo_client = mongo_client
@@ -124,6 +137,8 @@ async def lifespan(app: FastAPI):
     logger.info("Apagando la aplicación...")
 
 
+startup_lifespan = lifespan
+
 app = FastAPI(lifespan=lifespan)
 
 logging.basicConfig(
@@ -144,6 +159,7 @@ async def lifespan(app: FastAPI):
     app.state.sync_mongo_db = None
     app.state.mongo_client = None
     app.state.recommendation_engine = None
+    app.state.engine_is_ready = False
 
     try:
 
@@ -245,7 +261,7 @@ app = FastAPI(
     title="Motor de IA Rubiko",
     description="Motor de IA para recomendaciones y chat analítico.",
     version="12.0.0 (Estable)",
-    lifespan=lifespan,
+    lifespan=startup_lifespan,
 )
 
 
