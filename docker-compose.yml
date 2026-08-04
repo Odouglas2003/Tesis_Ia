@@ -2,6 +2,8 @@ services:
   mongodb:
     image: mongo:6.0
     container_name: mongodb
+    profiles:
+      - local-db
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -22,9 +24,8 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_DB_CONNECTION_STRING: mongodb://root:example@mongodb:27017/?authSource=admin
-    depends_on:
-      - mongodb
+      MONGO_DB_CONNECTION_STRING: ${MONGO_DB_CONNECTION_STRING}
+      MONGO_DB_NAME: ${MONGO_DB_NAME:-tesis}
     ports:
       - "8000:8000"
     
