@@ -54,7 +54,7 @@ def run_mongodb_query(query: str) -> str:
 # --- DESCRIPCIÓN MEJORADA DE LA HERRAMIENTA ---
 # Esta es la parte más importante. Le damos al LLM un "mapa" de la base de datos.
 tool_description = """
-Herramienta indispensable para responder preguntas sobre los datos de la aplicación 'Planilla Rubik'.
+Herramienta indispensable para responder preguntas sobre los datos de la aplicación 'Software Team Builder'.
 La entrada debe ser una consulta de PyMongo de solo lectura, como una única cadena de texto.
 
 **Esquema de Colecciones Disponibles:**
@@ -66,7 +66,7 @@ La entrada debe ser una consulta de PyMongo de solo lectura, como una única cad
 
 2.  **`db.projects`**: Detalles de los proyectos.
     -   Campos clave: `name`, `description`, `technologies` (array), `state` (ej. 'Activo', 'Finalizado'), `vacancies` (array).
-    -   Útil para preguntas como "¿Cuántos proyectos activos hay?" o "¿Qué tecnologías se usan en el proyecto Rubik MF?".
+    -   Útil para preguntas como "¿Cuántos proyectos activos hay?" o "¿Qué tecnologías se usan en un proyecto?".
     -   Ejemplo de consulta: `db.projects.count_documents({{'state': 'Activo'}})`
 
 3.  **`db.vacancie`**: Puestos de trabajo o vacantes abiertas.

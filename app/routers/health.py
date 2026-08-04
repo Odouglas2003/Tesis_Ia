@@ -9,7 +9,7 @@ async def health_check():
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
-        "service": "rubik-ai-engine",
+        "service": "software-team-builder-ai-engine",
         "version": "1.0.0",
     }
 

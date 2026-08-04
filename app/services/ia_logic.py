@@ -639,13 +639,13 @@ Usuario: "proyectos con más horas asignadas"
   ]
 }
 
-Usuario: "personas que desarrollan en Rubik"
+Usuario: "personas que desarrollan en Proyecto Atlas"
 {
   "collection": "collaborator",
   "query_type": "aggregate",
   "query": [
     { "$lookup": { "from": "projects", "localField": "Proyectos.projectId", "foreignField": "_id", "as": "projectDetails" } },
-    { "$match": { "projectDetails.name": { "$regex": "Rubik", "$options": "i" }, "delete_at": null } }
+    { "$match": { "projectDetails.name": { "$regex": "Proyecto Atlas", "$options": "i" }, "delete_at": null } }
   ]
 }
 
@@ -666,14 +666,14 @@ Usario: "¿quién es el {{rol}} de {{project_name}}?"
 }
 
 
-Usuario: "¿quién es el Scrum Master de Rubik?"
+Usuario: "¿quién es el Scrum Master de Proyecto Atlas?"
 {
   "collection": "projects",
   "query_type": "aggregate",
   "query": [
     {
       "$match": {
-        "name": { "$regex": "Rubik", "$options": "i" }
+        "name": { "$regex": "Proyecto Atlas", "$options": "i" }
       }
     },
     {
@@ -735,7 +735,7 @@ Usuario: "¿quién es el Scrum Master de Rubik?"
   "collection": "projects",
   "query_type": "aggregate",
   "query": [
-    { "$match": { "name": { "$regex": "Rubik", "$options": "i" } } },
+    { "$match": { "name": { "$regex": "Proyecto Atlas", "$options": "i" } } },
     { "$unwind": "$assignedPersons" },
     { "$match": { "assignedPersons.rol": { "$regex": "QA", "$options": "i" } } },
     {
@@ -808,7 +808,7 @@ Usuario: "vacantes que requieran saber Angular"
   "collection": "projects",
   "query_type": "aggregate",
   "query": [
-    { "$match": { "name": { "$regex": "Rubik", "$options": "i" } } },
+    { "$match": { "name": { "$regex": "Proyecto Atlas", "$options": "i" } } },
     { "$unwind": "$assignedPersons" },
     { "$match": { "assignedPersons.rol": { "$regex": "Project Manager", "$options": "i" } } },
     {

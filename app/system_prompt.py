@@ -13,7 +13,7 @@ MONGO_DB_CONNECTION = os.getenv("MONGO_DB_CONNECTION_STRING")
 
 
 mongo_client = MongoClient(MONGO_DB_CONNECTION)
-db = mongo_client["Rubik"]
+db = mongo_client[os.getenv("MONGO_DB_NAME", "tesis")]
 
 
 SYSTEM_PROMPT = """

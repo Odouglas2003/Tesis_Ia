@@ -32,7 +32,7 @@ async def refresh_ia_data(
     """
     Este endpoint fuerza al motor de IA a recargar todos los datos de las colecciones
     'collaborator' y 'projects' desde MongoDB.
-    Debe ser llamado por el backend de RUBIK después de realizar cambios en los datos.
+    Debe ser llamado por el backend de Software Team Builder después de realizar cambios en los datos.
     """
     logger.info("--- INICIO Endpoint /api/system/refresh-data ---")
 

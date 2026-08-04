@@ -258,7 +258,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Motor de IA Rubiko",
+    title="Motor de IA de Software Team Builder",
     description="Motor de IA para recomendaciones y chat analítico.",
     version="12.0.0 (Estable)",
     lifespan=startup_lifespan,
@@ -284,4 +284,4 @@ async def log_all_requests(request: Request, call_next):
 
 @app.get("/", tags=["Root"])
 async def read_root():
-    return {"message": "Motor de IA de Rubiko (v12 Estable) funcionando correctamente."}
+    return {"message": "Motor de IA de Software Team Builder (v12 Estable) funcionando correctamente."}
