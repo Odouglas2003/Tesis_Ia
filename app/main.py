@@ -15,7 +15,7 @@ from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
-from app.routers import health, teams, chat, faiss_update, analytics
+from app.routers import health, teams, chat, faiss_update, analytics, speech
 from config import Config
 from app.recommendation_engine import (
     SoftwareTeamRecommender,
@@ -270,6 +270,7 @@ app.include_router(teams.router)
 app.include_router(chat.router)
 app.include_router(faiss_update.router)
 app.include_router(analytics.router)
+app.include_router(speech.router)
 logger.info("Router '/api/teams' registrado.")
 logger.info("Router '/chat' registrado.")
 

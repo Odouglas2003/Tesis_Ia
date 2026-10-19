@@ -83,6 +83,206 @@ def get_vectorstore(request: Request) -> FAISS:
 class AgentToolsService:
     def __init__(self, sync_db: SyncDatabase):
         self.db = sync_db
+        self.proposed_action = None
+
+    ROLE_PATTERNS = {
+        "fullstack": r"full\s*stack|fullstack|fulltasck|fullstak|full stack developer|desarrollador\s+full\s*stack",
+        "frontend": r"front\s*end|frontend|fontend|fronted|fronend|frontend developer|desarrollador\s+front",
+        "backend": r"back\s*end|backend|bakend|backed|backend developer|desarrollador\s+back",
+        "devops": r"dev\s*ops|devops|sre|cloud engineer",
+        "qa": r"qa|tester|testing|quality assurance|analista de calidad",
+        "projectmanager": r"project\s*manager|projectmanager|\bpm\b|lider de proyecto|líder de proyecto",
+        "uxui": r"ux\s*/?\s*ui|uxui|diseñador|designer",
+        "data": r"data\s*(engineer|analyst|scientist)?|datos|cientifico de datos|científico de datos",
+    }
+
+    def _role_pattern(self, role: str) -> str:
+        normalized = re.sub(r"[^a-z0-9]", "", role.lower())
+        typo_aliases = {
+            "fullstackdeveloper": "fullstack", "fullstack": "fullstack",
+            "fullstak": "fullstack", "fulltasck": "fullstack",
+            "frontenddeveloper": "frontend", "frontend": "frontend",
+            "fontend": "frontend", "fronted": "frontend", "fronend": "frontend",
+            "backenddeveloper": "backend", "backend": "backend",
+            "bakend": "backend", "backed": "backend",
+            "devopsengineer": "devops", "tester": "qa",
+            "projectmanager": "projectmanager", "pm": "projectmanager",
+            "uxui": "uxui", "dataengineer": "data", "dataanalyst": "data",
+        }
+        canonical = typo_aliases.get(normalized, normalized)
+        return self.ROLE_PATTERNS.get(canonical, re.escape(role.strip()))
+
+    def count_collaborators_by_role(self, role: str, only_available: bool = False) -> str:
+        """Cuenta colaboradores entendiendo sinonimos, variantes y errores del rol."""
+        query = {
+            "delete_at": None,
+            "roles.rol": {"$regex": self._role_pattern(role), "$options": "i"},
+        }
+        if only_available:
+            query["estado"] = {"$regex": "activo|disponible", "$options": "i"}
+        people = list(self.db["collaborator"].find(query))
+        if only_available:
+            people = [person for person in people if sum(float(p.get("horasAsignadas") or 0) for p in person.get("Proyectos", [])) < 40]
+        return json.dumps({
+            "requested_role": role,
+            "matched_pattern": self._role_pattern(role),
+            "count": len(people),
+            "collaborators": [{"id": str(person.get("_id")), "name": f"{person.get('first_name', '')} {person.get('last_name', '')}".strip(), "roles": person.get("roles", [])} for person in people[:20]],
+        }, ensure_ascii=False)
+
+    def propose_create_vacancy(
+        self, name: str, hours: int, order_date: str, start_date: str,
+        seniority: str, description: str = "", project_id: str = "",
+    ) -> str:
+        """Prepara una vacante para confirmar sin modificar datos."""
+        payload = {
+            "vacancieName": name.strip(), "time": hours,
+            "orderDate": order_date, "startDate": start_date,
+            "seniority": seniority.strip(), "description": description.strip(),
+            "status": "Abierta",
+        }
+        if project_id.strip():
+            payload["projectId"] = project_id.strip()
+        self.proposed_action = {
+            "type": "create_vacancy",
+            "title": f"Crear vacante: {name.strip()}",
+            "payload": payload,
+        }
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def find_available_collaborators(
+        self, technology: str, role: str = "", seniority: str = "", limit: int = 5
+    ) -> str:
+        """Busca colaboradores activos y estima disponibilidad semanal."""
+        filters = {
+            "delete_at": None,
+            "estado": {"$regex": "activo|disponible", "$options": "i"},
+            "tecnologias": {"$regex": re.escape(technology.strip()), "$options": "i"},
+        }
+        if role.strip():
+            filters["roles.rol"] = {"$regex": self._role_pattern(role), "$options": "i"}
+        if seniority.strip():
+            filters["roles.seniority"] = {"$regex": re.escape(seniority.strip()), "$options": "i"}
+        results = []
+        for person in self.db["collaborator"].find(filters).limit(max(1, min(limit, 10))):
+            assigned = sum(float(p.get("horasAsignadas") or 0) for p in person.get("Proyectos", []))
+            results.append({
+                "id": str(person.get("_id")),
+                "name": f"{person.get('first_name', '')} {person.get('last_name', '')}".strip(),
+                "technologies": person.get("tecnologias", []),
+                "roles": person.get("roles", []),
+                "assigned_hours": assigned,
+                "estimated_available_hours": max(0, 40 - assigned),
+            })
+        return json.dumps(results, ensure_ascii=False)
+
+    def find_overdue_projects(self, limit: int = 10) -> str:
+        """Lista proyectos cuya fecha final ya paso y no estan finalizados."""
+        today = datetime.utcnow()
+        query = {
+            "delete_at": None,
+            "endDate": {"$lt": today},
+            "status": {"$not": {"$regex": "finalizado|completado|cerrado", "$options": "i"}},
+        }
+        docs = list(self.db["projects"].find(query).sort("endDate", 1).limit(max(1, min(limit, 25))))
+        return json.dumps(self._sanitize_output(docs), ensure_ascii=False)
+
+    def suggest_team(self, roles: str, technologies: str = "", hours: int = 40) -> str:
+        """Sugiere un colaborador disponible por cada rol solicitado."""
+        requested_roles = [value.strip() for value in roles.split(",") if value.strip()]
+        requested_techs = [value.strip() for value in technologies.split(",") if value.strip()]
+        selected_ids = set()
+        team = []
+        for role in requested_roles:
+            query = {"delete_at": None, "estado": {"$regex": "activo|disponible", "$options": "i"}, "roles.rol": {"$regex": re.escape(role), "$options": "i"}}
+            if requested_techs:
+                query["tecnologias"] = {"$in": [{"$regex": re.escape(tech), "$options": "i"} for tech in requested_techs]}
+            candidates = []
+            for person in self.db["collaborator"].find(query).limit(20):
+                person_id = str(person.get("_id"))
+                if person_id in selected_ids:
+                    continue
+                assigned = sum(float(p.get("horasAsignadas") or 0) for p in person.get("Proyectos", []))
+                available = max(0, 40 - assigned)
+                techs = [str(t) for t in person.get("tecnologias", [])]
+                matches = sum(1 for tech in requested_techs if any(tech.lower() in known.lower() for known in techs))
+                candidates.append((available >= hours, matches, available, person))
+            candidates.sort(key=lambda item: (item[0], item[1], item[2]), reverse=True)
+            if not candidates:
+                team.append({"role": role, "candidate": None, "vacancy_needed": True})
+                continue
+            _, _, available, person = candidates[0]
+            selected_ids.add(str(person.get("_id")))
+            team.append({"role": role, "candidate": {"id": str(person.get("_id")), "name": f"{person.get('first_name', '')} {person.get('last_name', '')}".strip(), "technologies": person.get("tecnologias", []), "available_hours": available}, "vacancy_needed": available < hours})
+        return json.dumps(team, ensure_ascii=False)
+
+    def propose_create_project(
+        self, name: str, client: str, manager_id: str, manager_name: str,
+        status: str, project_type: str, start_date: str, end_date: str,
+        category: str, description: str = "", budget: float = 0,
+    ) -> str:
+        payload = {
+            "name": name.strip(), "client": client.strip(),
+            "managerId": manager_id.strip(), "managerName": manager_name.strip(),
+            "managerVisibleInOrgChart": True, "status": status.strip(),
+            "projectType": project_type.strip(), "startDate": start_date,
+            "endDate": end_date, "category": category.strip(),
+            "description": description.strip(), "budget": budget,
+            "assignedPersons": [], "ia_generated": True,
+        }
+        self.proposed_action = {"type": "create_project", "title": f"Crear proyecto: {name.strip()}", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def propose_assign_collaborator(
+        self, project_id: str, collaborator_id: str, collaborator_name: str,
+        role: str, seniority: str, hours: int, technologies: str = "",
+    ) -> str:
+        payload = {
+            "projectId": project_id.strip(), "id": collaborator_id.strip(),
+            "name": collaborator_name.strip(), "rol": role.strip(),
+            "seniority": seniority.strip(), "horasAsignadas": hours,
+            "tecnologias": [item.strip() for item in technologies.split(",") if item.strip()],
+        }
+        self.proposed_action = {"type": "assign_collaborator", "title": f"Asignar {collaborator_name.strip()} al proyecto", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def propose_remove_assignment(self, project_id: str, collaborator_id: str, collaborator_name: str) -> str:
+        payload = {"projectId": project_id.strip(), "collaboratorId": collaborator_id.strip(), "name": collaborator_name.strip()}
+        self.proposed_action = {"type": "remove_assignment", "title": f"Quitar a {collaborator_name.strip()} del proyecto", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def propose_close_vacancy(self, vacancy_id: str, vacancy_name: str) -> str:
+        payload = {"vacancyId": vacancy_id.strip(), "name": vacancy_name.strip(), "status": "Finalizada"}
+        self.proposed_action = {"type": "close_vacancy", "title": f"Cerrar vacante: {vacancy_name.strip()}", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def propose_update_project(
+        self, project_id: str, project_name: str, status: str = "",
+        end_date: str = "", description: str = "", budget: float = -1,
+    ) -> str:
+        changes = {}
+        if status.strip(): changes["status"] = status.strip()
+        if end_date.strip(): changes["endDate"] = end_date.strip()
+        if description.strip(): changes["description"] = description.strip()
+        if budget >= 0: changes["budget"] = budget
+        payload = {"projectId": project_id.strip(), "name": project_name.strip(), "changes": changes}
+        self.proposed_action = {"type": "update_project", "title": f"Editar proyecto: {project_name.strip()}", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def propose_notification(self, message: str, recipients: str, alert_level: str = "info", reference_id: str = "jarvis") -> str:
+        payload = {"message": message.strip(), "recipients": [value.strip() for value in recipients.split(",") if value.strip()], "alertLevel": alert_level.strip(), "referenceId": reference_id.strip() or "jarvis"}
+        self.proposed_action = {"type": "create_notification", "title": "Enviar notificacion interna", "payload": payload}
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
+
+    def generate_status_report(self) -> str:
+        now = datetime.utcnow()
+        report = {
+            "active_projects": self.db["projects"].count_documents({"delete_at": None, "status": {"$not": {"$regex": "finalizado|completado|cerrado", "$options": "i"}}}),
+            "overdue_projects": self.db["projects"].count_documents({"delete_at": None, "endDate": {"$lt": now}, "status": {"$not": {"$regex": "finalizado|completado|cerrado", "$options": "i"}}}),
+            "open_vacancies": self.db["vacancie"].count_documents({"delete_at": None, "status": {"$ne": "Finalizada"}}),
+            "active_collaborators": self.db["collaborator"].count_documents({"delete_at": None, "estado": {"$regex": "activo|disponible", "$options": "i"}}),
+        }
+        return json.dumps(report, ensure_ascii=False)
 
     def _sanitize_output(self, data: any) -> any:
         if isinstance(data, dict):
@@ -302,6 +502,89 @@ class CollaboratorNameArgs(BaseModel):
     limit: int = Field(default=5, description="Número máximo de resultados a devolver.")
 
 
+class CreateVacancyArgs(BaseModel):
+    name: str = Field(description="Nombre de la vacante")
+    hours: int = Field(description="Cantidad de horas requeridas")
+    order_date: str = Field(description="Fecha del pedido en formato YYYY-MM-DD")
+    start_date: str = Field(description="Fecha de inicio en formato YYYY-MM-DD")
+    seniority: str = Field(description="Seniority requerido")
+    description: str = Field(default="", description="Descripcion opcional")
+    project_id: str = Field(default="", description="ID opcional del proyecto")
+
+
+class AvailableCollaboratorsArgs(BaseModel):
+    technology: str
+    role: str = ""
+    seniority: str = ""
+    limit: int = 5
+
+
+class RoleCountArgs(BaseModel):
+    role: str = Field(description="Rol escrito de cualquier manera, incluso abreviado o con errores")
+    only_available: bool = Field(default=False, description="Si debe contar solamente personas con horas disponibles")
+
+
+class OverdueProjectsArgs(BaseModel):
+    limit: int = 10
+
+
+class SuggestTeamArgs(BaseModel):
+    roles: str = Field(description="Roles separados por coma")
+    technologies: str = Field(default="", description="Tecnologias separadas por coma")
+    hours: int = 40
+
+
+class CreateProjectArgs(BaseModel):
+    name: str
+    client: str
+    manager_id: str
+    manager_name: str
+    status: str
+    project_type: str
+    start_date: str
+    end_date: str
+    category: str
+    description: str = ""
+    budget: float = 0
+
+
+class AssignCollaboratorArgs(BaseModel):
+    project_id: str
+    collaborator_id: str
+    collaborator_name: str
+    role: str
+    seniority: str
+    hours: int
+    technologies: str = ""
+
+
+class RemoveAssignmentArgs(BaseModel):
+    project_id: str
+    collaborator_id: str
+    collaborator_name: str
+
+
+class CloseVacancyArgs(BaseModel):
+    vacancy_id: str
+    vacancy_name: str
+
+
+class UpdateProjectArgs(BaseModel):
+    project_id: str
+    project_name: str
+    status: str = ""
+    end_date: str = ""
+    description: str = ""
+    budget: float = -1
+
+
+class NotificationArgs(BaseModel):
+    message: str
+    recipients: str = Field(description="Emails separados por coma")
+    alert_level: str = "info"
+    reference_id: str = "jarvis"
+
+
 # --- ENDPOINT DEL CHAT ---
 @router.post("/")
 async def chat_endpoint(
@@ -373,6 +656,23 @@ async def chat_endpoint(
                     args_schema=CollaboratorNameArgs,
                     description="Busca un colaborador por nombre o apellido en cualquier orden. Es la herramienta obligatoria para preguntas como 'quién es Quiroga Martin'.",
                 ),
+                StructuredTool.from_function(
+                    func=service.propose_create_vacancy,
+                    name="proponer_creacion_vacante",
+                    args_schema=CreateVacancyArgs,
+                    description="Prepara una vacante para confirmacion. Usar solo si el usuario pide crearla y dio nombre, horas, fecha de pedido, fecha de inicio y seniority.",
+                ),
+                StructuredTool.from_function(func=service.find_available_collaborators, name="buscar_colaboradores_disponibles", args_schema=AvailableCollaboratorsArgs, description="Busca colaboradores activos por tecnologia, rol y seniority, mostrando horas disponibles estimadas."),
+                StructuredTool.from_function(func=service.count_collaborators_by_role, name="contar_colaboradores_por_rol", args_schema=RoleCountArgs, description="Cuenta colaboradores por rol tolerando sinonimos, nombres parciales y errores como fullstack/full stack/fulltasck o frontend/fontend/fronted."),
+                StructuredTool.from_function(func=service.find_overdue_projects, name="buscar_proyectos_atrasados", args_schema=OverdueProjectsArgs, description="Lista proyectos vencidos que aun no estan finalizados."),
+                StructuredTool.from_function(func=service.suggest_team, name="armar_equipo", args_schema=SuggestTeamArgs, description="Sugiere un colaborador disponible por cada rol pedido y marca si hace falta una vacante."),
+                StructuredTool.from_function(func=service.propose_create_project, name="proponer_creacion_proyecto", args_schema=CreateProjectArgs, description="Prepara un proyecto para confirmacion cuando estan todos los datos obligatorios."),
+                StructuredTool.from_function(func=service.propose_assign_collaborator, name="proponer_asignacion_colaborador", args_schema=AssignCollaboratorArgs, description="Prepara la asignacion de un colaborador a un proyecto. Primero hay que buscar ambos para obtener IDs reales."),
+                StructuredTool.from_function(func=service.propose_remove_assignment, name="proponer_quitar_asignacion", args_schema=RemoveAssignmentArgs, description="Prepara quitar un colaborador de un proyecto usando IDs reales."),
+                StructuredTool.from_function(func=service.propose_close_vacancy, name="proponer_cierre_vacante", args_schema=CloseVacancyArgs, description="Prepara el cierre de una vacante encontrada previamente."),
+                StructuredTool.from_function(func=service.propose_update_project, name="proponer_edicion_proyecto", args_schema=UpdateProjectArgs, description="Prepara cambios permitidos de un proyecto: estado, fecha final, descripcion o presupuesto."),
+                StructuredTool.from_function(func=service.propose_notification, name="proponer_notificacion", args_schema=NotificationArgs, description="Prepara una notificacion interna para emails indicados."),
+                StructuredTool.from_function(func=service.generate_status_report, name="generar_reporte_estado", description="Genera un resumen ejecutivo actual de proyectos, atrasos, vacantes y colaboradores."),
             ]
             logger.info("✅ Paso 4: Tools creadas correctamente")
         except Exception as e:
@@ -393,7 +693,7 @@ async def chat_endpoint(
                 [
                     (
                         "system",
-                        """Eres el asistente de IA de Software Team Builder, el sistema desarrollado para esta tesis.
+                        """Tu nombre es JARVIS. Eres el asistente de IA de Software Team Builder, el sistema desarrollado para esta tesis.
                         Su objetivo es ayudar a gestionar colaboradores y proyectos, analizar perfiles y recomendar
                         equipos de trabajo adecuados según roles, tecnologías, experiencia y presupuesto.
                         **INSTRUCCIONES CRÍTICAS:**
@@ -403,13 +703,20 @@ async def chat_endpoint(
                      4. Para colaboradores: buscar en colección 'collaborator' con campos 'first_name' y 'last_name'
                      5. Los usuarios pueden escribir "apellido nombre" o solo una parte del nombre; no asumas que el primer token siempre es first_name.
                      6. Si preguntan quién es una persona o buscan un colaborador por nombre, usa PRIMERO 'buscar_colaborador_por_nombre' con el nombre completo tal como lo escribió el usuario.
+                     7. Si pide crear una vacante, solicita brevemente los datos obligatorios faltantes. Cuando esten todos, usa 'proponer_creacion_vacante'. Nunca afirmes que fue creada antes de la confirmacion.
+                     8. Para disponibilidad usa 'buscar_colaboradores_disponibles'; para atrasos usa 'buscar_proyectos_atrasados'; para sugerir equipos usa 'armar_equipo'.
+                     8.1 Para preguntar cuantos colaboradores hay de un rol usa SIEMPRE 'contar_colaboradores_por_rol'. No construyas filtros literales para roles; la herramienta entiende variantes y errores de escritura.
+                     9. Para crear proyectos solicita nombre, cliente, manager con ID, estado, tipo, fechas y categoria. Luego usa 'proponer_creacion_proyecto'.
+                     10. Para asignar personas, busca primero el proyecto y colaborador para obtener IDs reales, solicita rol, seniority y horas, y usa 'proponer_asignacion_colaborador'. Toda escritura requiere confirmacion.
+                     11. Tambien puedes preparar cierres de vacantes, quitar asignaciones, editar estado/fecha/descripcion/presupuesto de proyectos y enviar notificaciones. Busca primero los IDs y usa la herramienta especifica.
+                     12. Para reportes generales usa 'generar_reporte_estado' y presenta los resultados claramente.
 
                     📋 **Colecciones principales:**
                      - 'collaborator': Colaboradores actuales del sistema
                      - 'projects': Proyectos
                      - 'people': ❌ NO USAR - Datos obsoletos de otro sistema
 
-                     Responde siempre en español. Eres conciso y te basas únicamente en la
+                     Responde siempre en español, con un tono natural, cercano y conciso. Te basas únicamente en la
                      información que te proporcionan tus herramientas.""",
                     ),
                     MessagesPlaceholder(variable_name="chat_history"),
@@ -424,7 +731,7 @@ async def chat_endpoint(
                 tools=tools,
                 verbose=True,
                 handle_parsing_errors=True,
-                max_iterations=3,
+                max_iterations=6,
                 max_execution_time=30,
             )
             logger.info("✅ Paso 6: Agente creado correctamente")
@@ -444,7 +751,7 @@ async def chat_endpoint(
             )
             final_answer = response.get("output", "No pude generar una respuesta.")
             logger.info("✅ Paso 8: Agente ejecutado exitosamente")
-            return {"answer": final_answer}
+            return {"answer": final_answer, "action": service.proposed_action}
 
         except Exception as e:
             logger.error(f"❌ Error ejecutando agente: {e}", exc_info=True)
