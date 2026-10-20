@@ -44,6 +44,28 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Seniority canonica: el formulario envia "JR"/"SSR"/"SR" y los colaboradores tienen
+# "Junior", "Semi Senior", "Semi-Senior", "Senior", etc. Se comparan en la misma escala.
+_SENIORITY_ALIASES = {
+    "trainee": "trainee",
+    "junior": "jr", "jr": "jr",
+    "junior advanced": "jr_adv", "jr advanced": "jr_adv",
+    "semi senior": "ssr", "semisenior": "ssr", "ssr": "ssr", "semi": "ssr",
+    "semi senior advanced": "ssr_adv", "ssr advanced": "ssr_adv",
+    "senior": "sr", "sr": "sr",
+    "senior advanced": "sr_adv", "sr advanced": "sr_adv",
+}
+
+
+def canonical_seniority(value) -> str:
+    if not isinstance(value, str):
+        return "desconocido"
+    cleaned = " ".join(value.lower().replace("-", " ").replace("_", " ").split())
+    if cleaned in ("", "nan", "no especificado"):
+        return "desconocido"
+    return _SENIORITY_ALIASES.get(cleaned, cleaned)
+
+
 # Las horas asignadas a proyectos se expresan por semana (jornada Full Time = 8 h x 5 dias).
 WEEKLY_CAPACITY_HOURS = 40
 
@@ -63,6 +85,7 @@ TECH_DISPLAY_NAMES = {
     "pandas": "Pandas", "numpy": "NumPy", "tensorflow": "TensorFlow",
     "pytorch": "PyTorch", "scikit-learn": "scikit-learn", "python": "Python",
     "java": "Java", "cypress": "Cypress", "php": "PHP", "go": "Go",
+    "playwright": "Playwright", "jest": "Jest",
 }
 
 
@@ -95,6 +118,10 @@ class SoftwareTeamRecommender:
             "junior advanced": {"tech_exp_factor": 0.5},
             "semi senior": {"tech_exp_factor": 0.7},
             "ssr": {"tech_exp_factor": 0.7},
+            "jr": {"tech_exp_factor": 0.4},
+            "jr_adv": {"tech_exp_factor": 0.5},
+            "ssr_adv": {"tech_exp_factor": 0.8},
+            "sr_adv": {"tech_exp_factor": 0.95},
             "senior": {"tech_exp_factor": 0.9},
             "sr": {"tech_exp_factor": 0.9},
             "expert": {"tech_exp_factor": 0.95},
@@ -232,6 +259,9 @@ class SoftwareTeamRecommender:
             "git": ["git"],
             "jenkins": ["jenkins"],
             "selenium": ["selenium"],
+            "cypress": ["cypress"],
+            "playwright": ["playwright"],
+            "jest": ["jest"],
             "figma": ["figma"],
             "html": ["html", "html5"],
             "css": ["css", "css3"],
@@ -478,7 +508,7 @@ class SoftwareTeamRecommender:
             return (
                 "desconocido"
                 if cleaned_seniority in ["-", "no especificado", "nan", ""]
-                else cleaned_seniority
+                else canonical_seniority(cleaned_seniority)
             )
         return "desconocido"
 
@@ -559,7 +589,7 @@ class SoftwareTeamRecommender:
         # (Sin cambios en esta función)
         analysis_points = []
         mapped_role_req = self._map_role(pos_req.role)
-        required_seniority = pos_req.seniority.lower().strip()
+        required_seniority = canonical_seniority(pos_req.seniority)
         if candidate_row.get("rol_asignado") != mapped_role_req:
             analysis_points.append(
                 f"No coincide con el rol solicitado ('{pos_req.role}'). Su rol es '{candidate_row.get('rol_asignado', 'N/A')}'."
@@ -651,7 +681,7 @@ class SoftwareTeamRecommender:
 
             scored_candidates = []
             if not final_candidates_df.empty:
-                required_seniority = pos_req.seniority.lower().strip()
+                required_seniority = canonical_seniority(pos_req.seniority)
                 required_techs = {
                     self._normalize_tech_name(t)
                     for t in (pos_req.technologies or [])
