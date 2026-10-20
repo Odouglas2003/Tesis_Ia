@@ -401,6 +401,43 @@ class SoftwareTeamRecommender:
         )
         logger.info("Valores numéricos normalizados.")
 
+    def _weekly_capacity(self, collaborator_id: str) -> float:
+        """Horas semanales disponibles segun la jornada del colaborador (jornada diaria x 5)."""
+        return getattr(self, "weekly_capacity", {}).get(
+            str(collaborator_id), WEEKLY_CAPACITY_HOURS
+        )
+
+    def refresh_availability(self, db, collaborator_collection: str = "collaborator") -> None:
+        """Relee de MongoDB las horas asignadas y la jornada de cada colaborador.
+
+        El motor se crea una sola vez al iniciar el servicio; sin esto, las asignaciones
+        hechas despues (proyectos nuevos) no se reflejaban en la disponibilidad.
+        """
+        if self.df_employees_original_numeric_values.empty:
+            return
+        try:
+            jornadas = {
+                str(j.get("_id")): float(j.get("hours") or 0)
+                for j in db["jornadas"].find({}, {"hours": 1})
+            }
+            capacity: Dict[str, float] = {}
+            projection = {"Proyectos.horasAsignadas": 1, "jornadaId": 1, "delete_at": 1}
+            for doc in db[collaborator_collection].find({}, projection):
+                cid = str(doc.get("_id"))
+                if doc.get("delete_at"):
+                    capacity[cid] = 0.0  # colaborador dado de baja: no se propone
+                else:
+                    capacity[cid] = (jornadas.get(str(doc.get("jornadaId"))) or 8.0) * 5
+                if cid in self.df_employees_original_numeric_values.index:
+                    total = sum(
+                        float(p.get("horasAsignadas") or 0)
+                        for p in (doc.get("Proyectos") or [])
+                    )
+                    self.df_employees_original_numeric_values.at[cid, "horasAsignadas"] = total
+            self.weekly_capacity = capacity
+        except Exception as e:  # nunca bloquear la recomendacion por esto
+            logger.warning(f"No se pudo refrescar la disponibilidad desde MongoDB: {e}")
+
     def _map_role(self, text_to_search: Optional[str]) -> Optional[str]:
         if (
             not text_to_search
@@ -484,7 +521,9 @@ class SoftwareTeamRecommender:
             missing_data_warnings.append("evaluacion_de_desempeno")
 
         horas_asignadas_actual = original_values_row.get("horasAsignadas", 0)
-        horas_disponibles = max(0, WEEKLY_CAPACITY_HOURS - horas_asignadas_actual)
+        horas_disponibles = max(
+            0, self._weekly_capacity(candidate_row.name) - horas_asignadas_actual
+        )
 
         # El score de disponibilidad ya se filtra antes, así que aquí solo se calcula para informar
         if assigned_hours_needed > 0:
@@ -584,11 +623,15 @@ class SoftwareTeamRecommender:
             # --- NUEVO: FILTRO DURO POR DISPONIBILIDAD ---
             final_candidates_df = candidates_df_by_role
             if pos_req.assigned_hours_needed > 0 and not final_candidates_df.empty:
+                capacidad = pd.Series(
+                    [self._weekly_capacity(i) for i in final_candidates_df.index],
+                    index=final_candidates_df.index,
+                )
                 horas_disponibles = (
-                    WEEKLY_CAPACITY_HOURS
+                    capacidad
                     - self.df_employees_original_numeric_values.loc[
                         final_candidates_df.index
-                    ]["horasAsignadas"]
+                    ]["horasAsignadas"].fillna(0)
                 )
                 final_candidates_df = final_candidates_df[
                     horas_disponibles >= pos_req.assigned_hours_needed

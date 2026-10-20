@@ -150,6 +150,7 @@ async def recommend_for_positions(
                 status_code=500, detail="Error interno crítico en el servicio de IA."
             )
 
+        engine.refresh_availability(db, Config.MONGO_COLLABORATOR_COLLECTION_NAME)
         logger.info("Generando recomendaciones con la instancia Singleton del motor...")
         result_from_engine = engine.recommend_for_positions_v2(
             positions_requested=request_data.positions_requested,
