@@ -150,7 +150,21 @@ async def recommend_for_positions(
                 status_code=500, detail="Error interno crítico en el servicio de IA."
             )
 
-        engine.refresh_availability(db, Config.MONGO_COLLABORATOR_COLLECTION_NAME)
+        if engine.refresh_availability(db, Config.MONGO_COLLABORATOR_COLLECTION_NAME):
+            # Hay colaboradores cargados despues de iniciar el servicio: se reconstruye el motor.
+            logger.info("Colaboradores nuevos detectados: reconstruyendo el motor de recomendacion...")
+            import pandas as pd
+            from ..recommendation_engine import SoftwareTeamRecommender
+
+            collaborators = list(db[Config.MONGO_COLLABORATOR_COLLECTION_NAME].find({}))
+            projects = list(db[Config.MONGO_PROJECT_COLLECTION_NAME].find({}))
+            engine = SoftwareTeamRecommender(
+                pd.DataFrame(collaborators),
+                pd.DataFrame(projects) if projects else pd.DataFrame(),
+            )
+            engine.known_ids = {str(c.get("_id")) for c in collaborators}
+            engine.refresh_availability(db, Config.MONGO_COLLABORATOR_COLLECTION_NAME)
+            request.app.state.recommendation_engine = engine
         logger.info("Generando recomendaciones con la instancia Singleton del motor...")
         result_from_engine = engine.recommend_for_positions_v2(
             positions_requested=request_data.positions_requested,

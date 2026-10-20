@@ -407,14 +407,19 @@ class SoftwareTeamRecommender:
             str(collaborator_id), WEEKLY_CAPACITY_HOURS
         )
 
-    def refresh_availability(self, db, collaborator_collection: str = "collaborator") -> None:
+    def refresh_availability(self, db, collaborator_collection: str = "collaborator") -> bool:
         """Relee de MongoDB las horas asignadas y la jornada de cada colaborador.
 
         El motor se crea una sola vez al iniciar el servicio; sin esto, las asignaciones
         hechas despues (proyectos nuevos) no se reflejaban en la disponibilidad.
+        Devuelve True si hay colaboradores activos que el motor no conoce (hay que reconstruirlo).
         """
         if self.df_employees_original_numeric_values.empty:
-            return
+            return False
+        known_ids = getattr(self, "known_ids", None) or set(
+            self.df_employees_original_numeric_values.index.astype(str)
+        )
+        has_new = False
         try:
             jornadas = {
                 str(j.get("_id")): float(j.get("hours") or 0)
@@ -428,6 +433,8 @@ class SoftwareTeamRecommender:
                     capacity[cid] = 0.0  # colaborador dado de baja: no se propone
                 else:
                     capacity[cid] = (jornadas.get(str(doc.get("jornadaId"))) or 8.0) * 5
+                    if cid not in known_ids:
+                        has_new = True
                 if cid in self.df_employees_original_numeric_values.index:
                     total = sum(
                         float(p.get("horasAsignadas") or 0)
@@ -437,6 +444,8 @@ class SoftwareTeamRecommender:
             self.weekly_capacity = capacity
         except Exception as e:  # nunca bloquear la recomendacion por esto
             logger.warning(f"No se pudo refrescar la disponibilidad desde MongoDB: {e}")
+            return False
+        return has_new
 
     def _map_role(self, text_to_search: Optional[str]) -> Optional[str]:
         if (
