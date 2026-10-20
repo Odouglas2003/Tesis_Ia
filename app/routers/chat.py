@@ -274,6 +274,40 @@ class AgentToolsService:
         self.proposed_action = {"type": "create_notification", "title": "Enviar notificacion interna", "payload": payload}
         return "Accion preparada. El usuario debe revisarla y confirmarla."
 
+    ASSIGNMENT_STATES = {
+        "sin_asignacion": "Sin asignación",
+        "subasignado": "Subasignado",
+        "asignado": "Asignado",
+        "sobreasignado": "Sobreasignado",
+    }
+
+    def list_collaborators_by_assignment_status(self, estado: str = "") -> str:
+        """Clasifica colaboradores activos segun horas semanales asignadas vs capacidad (jornada diaria x 5).
+        Usa la misma regla que el dashboard del sistema."""
+        key = re.sub(r"[^a-z_]", "", (estado or "").lower().replace(" ", "_").replace("ó", "o"))
+        jornadas = {str(j.get("_id")): float(j.get("hours") or 0) for j in self.db["jornadas"].find({})}
+        groups = {k: [] for k in self.ASSIGNMENT_STATES}
+        for person in self.db["collaborator"].find({"delete_at": None}):
+            total = sum(float(p.get("horasAsignadas") or 0) for p in (person.get("Proyectos") or []))
+            capacity = jornadas.get(str(person.get("jornadaId")), 8.0) * 5
+            if total == 0:
+                state = "sin_asignacion"
+            elif total > capacity:
+                state = "sobreasignado"
+            elif total == capacity:
+                state = "asignado"
+            else:
+                state = "subasignado"
+            groups[state].append({
+                "id": str(person.get("_id")),
+                "name": f"{person.get('first_name', '')} {person.get('last_name', '')}".strip(),
+                "assigned_hours_per_week": total,
+                "weekly_capacity_hours": capacity,
+            })
+        if key in groups:
+            return json.dumps({"estado": self.ASSIGNMENT_STATES[key], "count": len(groups[key]), "collaborators": groups[key]}, ensure_ascii=False)
+        return json.dumps({self.ASSIGNMENT_STATES[k]: {"count": len(v), "collaborators": v} for k, v in groups.items()}, ensure_ascii=False)
+
     def generate_status_report(self) -> str:
         now = datetime.utcnow()
         report = {
@@ -519,6 +553,13 @@ class AvailableCollaboratorsArgs(BaseModel):
     limit: int = 5
 
 
+class AssignmentStatusArgs(BaseModel):
+    estado: str = Field(
+        default="",
+        description="Uno de: sin_asignacion, subasignado, asignado, sobreasignado. Vacio = resumen de todos.",
+    )
+
+
 class RoleCountArgs(BaseModel):
     role: str = Field(description="Rol escrito de cualquier manera, incluso abreviado o con errores")
     only_available: bool = Field(default=False, description="Si debe contar solamente personas con horas disponibles")
@@ -672,6 +713,7 @@ async def chat_endpoint(
                 StructuredTool.from_function(func=service.propose_close_vacancy, name="proponer_cierre_vacante", args_schema=CloseVacancyArgs, description="Prepara el cierre de una vacante encontrada previamente."),
                 StructuredTool.from_function(func=service.propose_update_project, name="proponer_edicion_proyecto", args_schema=UpdateProjectArgs, description="Prepara cambios permitidos de un proyecto: estado, fecha final, descripcion o presupuesto."),
                 StructuredTool.from_function(func=service.propose_notification, name="proponer_notificacion", args_schema=NotificationArgs, description="Prepara una notificacion interna para emails indicados."),
+                StructuredTool.from_function(func=service.list_collaborators_by_assignment_status, name="listar_colaboradores_por_estado_asignacion", args_schema=AssignmentStatusArgs, description="Lista colaboradores sin asignacion, subasignados, asignados o sobreasignados segun sus horas semanales. Usar SIEMPRE para preguntas sobre quien esta libre, sin asignar o sobrecargado."),
                 StructuredTool.from_function(func=service.generate_status_report, name="generar_reporte_estado", description="Genera un resumen ejecutivo actual de proyectos, atrasos, vacantes y colaboradores."),
             ]
             logger.info("✅ Paso 4: Tools creadas correctamente")
@@ -705,6 +747,7 @@ async def chat_endpoint(
                      6. Si preguntan quién es una persona o buscan un colaborador por nombre, usa PRIMERO 'buscar_colaborador_por_nombre' con el nombre completo tal como lo escribió el usuario.
                      7. Si pide crear una vacante, solicita brevemente los datos obligatorios faltantes. Cuando esten todos, usa 'proponer_creacion_vacante'. Nunca afirmes que fue creada antes de la confirmacion.
                      8. Para disponibilidad usa 'buscar_colaboradores_disponibles'; para atrasos usa 'buscar_proyectos_atrasados'; para sugerir equipos usa 'armar_equipo'.
+                     8.0 Para preguntas sobre colaboradores sin asignacion, subasignados, asignados o sobreasignados usa SIEMPRE 'listar_colaboradores_por_estado_asignacion'. Las horas de proyecto son semanales.
                      8.1 Para preguntar cuantos colaboradores hay de un rol usa SIEMPRE 'contar_colaboradores_por_rol'. No construyas filtros literales para roles; la herramienta entiende variantes y errores de escritura.
                      9. Para crear proyectos solicita nombre, cliente, manager con ID, estado, tipo, fechas y categoria. Luego usa 'proponer_creacion_proyecto'.
                      10. Para asignar personas, busca primero el proyecto y colaborador para obtener IDs reales, solicita rol, seniority y horas, y usa 'proponer_asignacion_colaborador'. Toda escritura requiere confirmacion.

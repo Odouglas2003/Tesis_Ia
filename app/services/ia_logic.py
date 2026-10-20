@@ -429,11 +429,11 @@ Usuario: "colaboradores asignados"
                 "then": "sin_asignacion"
               },
               {
-                "case": { "$gt": ["$totalHorasAsignadas", "$jornadaInfo.hours"] },
+                "case": { "$gt": ["$totalHorasAsignadas", { "$multiply": ["$jornadaInfo.hours", 5] }] },
                 "then": "sobreasignado"
               },
               {
-                "case": { "$eq": ["$totalHorasAsignadas", "$jornadaInfo.hours"] },
+                "case": { "$eq": ["$totalHorasAsignadas", { "$multiply": ["$jornadaInfo.hours", 5] }] },
                 "then": "asignado"
               }
             ],
@@ -1122,7 +1122,7 @@ Usuario: "hay PO disponibles"
       "$match": {
         "rolPrincipal": { "$regex": "QA", "$options": "i" }, // ← reemplazar QA por DevOps, UX, etc según la intención
         "$expr": {
-          "$lt": ["$totalHorasAsignadas", "$jornadaInfo.hours"]
+          "$lt": ["$totalHorasAsignadas", { "$multiply": ["$jornadaInfo.hours", 5] }]
         }
       }
     }

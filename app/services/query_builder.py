@@ -43,7 +43,7 @@ def build_assignment_status_pipeline(status: str, base_filter: Dict) -> List[Dic
             {
                 "$addFields": {
                     "horasJornadaMensual": {
-                        "$ifNull": [{"$toInt": "$jornada_details.hours"}, 160]
+                        "$ifNull": [{"$multiply": [{"$toInt": "$jornada_details.hours"}, 5]}, 40]
                     }
                 }
             },
@@ -182,7 +182,7 @@ def build_availability_pipeline(base_filter: Dict) -> List[Dict]:
             {
                 "$addFields": {
                     "horasJornadaMensual": {
-                        "$ifNull": [{"$toInt": "$jornada_details.hours"}, 160]
+                        "$ifNull": [{"$multiply": [{"$toInt": "$jornada_details.hours"}, 5]}, 40]
                     }
                 }
             },

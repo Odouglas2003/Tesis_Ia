@@ -104,7 +104,7 @@ def parse_user_query(query: str) -> Optional[Dict[str, Any]]:
                 {
                     "$addFields": {
                         "horasJornadaMensual": {
-                            "$ifNull": [{"$toInt": "$jornada_details.hours"}, 160]
+                            "$ifNull": [{"$multiply": [{"$toInt": "$jornada_details.hours"}, 5]}, 40]
                         }
                     }
                 },

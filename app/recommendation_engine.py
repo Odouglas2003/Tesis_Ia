@@ -44,6 +44,27 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Las horas asignadas a proyectos se expresan por semana (jornada Full Time = 8 h x 5 dias).
+WEEKLY_CAPACITY_HOURS = 40
+
+# Nombre visible de cada tecnologia normalizada (coincide con el catalogo de habilidades).
+TECH_DISPLAY_NAMES = {
+    "javascript": "JavaScript", "typescript": "TypeScript", "react": "React",
+    "react native": "React Native", "angular": "Angular", "vue": "Vue.js",
+    "node.js": "Node.js", "next.js": "Next.js", "dotnetcore": ".NET Core",
+    "dotnetframework": ".NET Framework", "csharp": "C#", "mongodb": "MongoDB",
+    "postgresql": "PostgreSQL", "mysql": "MySQL", "sqlserver": "SQL Server",
+    "docker": "Docker", "kubernetes": "Kubernetes", "aws": "AWS", "azure": "Azure",
+    "gcp": "GCP", "git": "Git", "jenkins": "Jenkins", "selenium": "Selenium",
+    "figma": "Figma", "html": "HTML", "css": "CSS", "flutter": "Flutter",
+    "db relacionales": "DB relacionales", "uml": "UML", "mockups": "Mockups",
+    "jira": "Jira", "microservicios": "Microservicios", "kafka": "Kafka",
+    "spring": "Spring", "ansible": "Ansible", "terraform": "Terraform",
+    "pandas": "Pandas", "numpy": "NumPy", "tensorflow": "TensorFlow",
+    "pytorch": "PyTorch", "scikit-learn": "scikit-learn", "python": "Python",
+    "java": "Java", "cypress": "Cypress", "php": "PHP", "go": "Go",
+}
+
 
 class SoftwareTeamRecommender:
     def __init__(
@@ -463,12 +484,12 @@ class SoftwareTeamRecommender:
             missing_data_warnings.append("evaluacion_de_desempeno")
 
         horas_asignadas_actual = original_values_row.get("horasAsignadas", 0)
-        horas_disponibles = max(0, 160 - horas_asignadas_actual)
+        horas_disponibles = max(0, WEEKLY_CAPACITY_HOURS - horas_asignadas_actual)
 
         # El score de disponibilidad ya se filtra antes, así que aquí solo se calcula para informar
         if assigned_hours_needed > 0:
             score_details["availability_score"] = self.config.W_AVAILABILITY_SCORE
-            availability_message = f"Disponible ({int(horas_disponibles)}h libres)"
+            availability_message = f"Disponible ({int(horas_disponibles)} h/semana libres)"
         else:
             score_details["availability_score"] = self.config.W_AVAILABILITY_SCORE
             availability_message = "Disponible (0h requeridas)"
@@ -564,7 +585,7 @@ class SoftwareTeamRecommender:
             final_candidates_df = candidates_df_by_role
             if pos_req.assigned_hours_needed > 0 and not final_candidates_df.empty:
                 horas_disponibles = (
-                    160
+                    WEEKLY_CAPACITY_HOURS
                     - self.df_employees_original_numeric_values.loc[
                         final_candidates_df.index
                     ]["horasAsignadas"]
@@ -615,7 +636,7 @@ class SoftwareTeamRecommender:
 
                     known_techs = sorted(
                         [
-                            self.tech_mapping[std_tech][0].title()
+                            TECH_DISPLAY_NAMES.get(std_tech, std_tech.title())
                             for std_tech in self.tech_mapping
                             if cand_row.get(
                                 self._get_standard_tech_col_name(std_tech, "_exp"), 0
@@ -706,7 +727,12 @@ class SoftwareTeamRecommender:
             elif vacancy_needed:
                 vacancy_message = f"Solo se encontraron {num_aptos_total} candidato(s) disponible(s) y apto(s). Se necesitan {pos_req.quantity - num_aptos_total} vacante(s) adicionales."
             else:
-                vacancy_message = f"Se encontraron {num_aptos_total} candidatos disponibles y aptos. Se proponen los {len(candidate_responses)} mejores."
+                if num_aptos_total == 1:
+                    vacancy_message = "Se encontró 1 candidato disponible y apto."
+                elif len(candidate_responses) == num_aptos_total:
+                    vacancy_message = f"Se encontraron {num_aptos_total} candidatos disponibles y aptos."
+                else:
+                    vacancy_message = f"Se encontraron {num_aptos_total} candidatos disponibles y aptos. Se proponen los {len(candidate_responses)} mejores."
 
             position_responses.append(
                 {
