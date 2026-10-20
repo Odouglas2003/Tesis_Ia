@@ -26,6 +26,8 @@ SENSITIVE_FIELDS = ["dni", "honorarios", "password", "sueldo", "address", "token
 class ChatRequest(BaseModel):
     query: str = Field(...)
     chat_history: Optional[List[dict]] = Field(default_factory=list)
+    user_role: Optional[str] = ""
+    user_name: Optional[str] = ""
 
 
 def get_sync_db(request: Request) -> SyncDatabase:
@@ -215,6 +217,27 @@ class AgentToolsService:
             selected_ids.add(str(person.get("_id")))
             team.append({"role": role, "candidate": {"id": str(person.get("_id")), "name": f"{person.get('first_name', '')} {person.get('last_name', '')}".strip(), "technologies": person.get("tecnologias", []), "available_hours": available}, "vacancy_needed": available < hours})
         return json.dumps(team, ensure_ascii=False)
+
+    def propose_create_collaborator(
+        self, first_name: str, last_name: str, email: str, dni: str, rol: str,
+        seniority: str, jornada: str = "Full Time", tecnologias: str = "",
+        start_contrato: str = "", fin_contrato: str = "",
+    ) -> str:
+        """Prepara el alta de un colaborador para que el usuario la confirme."""
+        payload = {
+            "first_name": first_name.strip(), "last_name": last_name.strip(),
+            "email": email.strip().lower(), "dni": dni.strip(),
+            "rol": rol.strip(), "seniority": seniority.strip(),
+            "jornada": (jornada or "Full Time").strip(),
+            "tecnologias": [t.strip() for t in (tecnologias or "").split(",") if t.strip()],
+            "start_contrato": start_contrato.strip(), "fin_contrato": fin_contrato.strip(),
+        }
+        self.proposed_action = {
+            "type": "create_collaborator",
+            "title": f"Dar de alta a {payload['first_name']} {payload['last_name']}",
+            "payload": payload,
+        }
+        return "Accion preparada. El usuario debe revisarla y confirmarla."
 
     def propose_create_project(
         self, name: str, client: str, manager_id: str, manager_name: str,
@@ -575,6 +598,19 @@ class SuggestTeamArgs(BaseModel):
     hours: int = 40
 
 
+class CreateCollaboratorArgs(BaseModel):
+    first_name: str = Field(description="Nombre")
+    last_name: str = Field(description="Apellido")
+    email: str = Field(description="Email laboral")
+    dni: str = Field(description="DNI, solo numeros")
+    rol: str = Field(description="Puesto, por ejemplo Backend Developer, QA Engineer, Project Manager")
+    seniority: str = Field(description="Trainee, Junior, Semi Senior o Senior")
+    jornada: str = Field(default="Full Time", description="Full Time, Part Time o Media Jornada")
+    tecnologias: str = Field(default="", description="Tecnologias separadas por coma")
+    start_contrato: str = Field(default="", description="Inicio de contrato YYYY-MM-DD")
+    fin_contrato: str = Field(default="", description="Fin de contrato YYYY-MM-DD")
+
+
 class CreateProjectArgs(BaseModel):
     name: str
     client: str
@@ -707,6 +743,7 @@ async def chat_endpoint(
                 StructuredTool.from_function(func=service.count_collaborators_by_role, name="contar_colaboradores_por_rol", args_schema=RoleCountArgs, description="Cuenta colaboradores por rol tolerando sinonimos, nombres parciales y errores como fullstack/full stack/fulltasck o frontend/fontend/fronted."),
                 StructuredTool.from_function(func=service.find_overdue_projects, name="buscar_proyectos_atrasados", args_schema=OverdueProjectsArgs, description="Lista proyectos vencidos que aun no estan finalizados."),
                 StructuredTool.from_function(func=service.suggest_team, name="armar_equipo", args_schema=SuggestTeamArgs, description="Sugiere un colaborador disponible por cada rol pedido y marca si hace falta una vacante."),
+                StructuredTool.from_function(func=service.propose_create_collaborator, name="proponer_alta_colaborador", args_schema=CreateCollaboratorArgs, description="Prepara el alta de un colaborador nuevo para que el usuario la confirme. Usar cuando ya se tienen nombre, apellido, email, DNI, puesto, seniority y jornada."),
                 StructuredTool.from_function(func=service.propose_create_project, name="proponer_creacion_proyecto", args_schema=CreateProjectArgs, description="Prepara un proyecto para confirmacion cuando estan todos los datos obligatorios."),
                 StructuredTool.from_function(func=service.propose_assign_collaborator, name="proponer_asignacion_colaborador", args_schema=AssignCollaboratorArgs, description="Prepara la asignacion de un colaborador a un proyecto. Primero hay que buscar ambos para obtener IDs reales."),
                 StructuredTool.from_function(func=service.propose_remove_assignment, name="proponer_quitar_asignacion", args_schema=RemoveAssignmentArgs, description="Prepara quitar un colaborador de un proyecto usando IDs reales."),
@@ -753,6 +790,9 @@ async def chat_endpoint(
                      10. Para asignar personas, busca primero el proyecto y colaborador para obtener IDs reales, solicita rol, seniority y horas, y usa 'proponer_asignacion_colaborador'. Toda escritura requiere confirmacion.
                      11. Tambien puedes preparar cierres de vacantes, quitar asignaciones, editar estado/fecha/descripcion/presupuesto de proyectos y enviar notificaciones. Busca primero los IDs y usa la herramienta especifica.
                      12. Para reportes generales usa 'generar_reporte_estado' y presenta los resultados claramente.
+                     13. Para dar de alta un colaborador pedi en lenguaje natural: nombre, apellido, email, DNI, puesto, seniority (Trainee, Junior, Semi Senior o Senior), jornada (Full Time, Part Time o Media Jornada), tecnologias y fechas de contrato (opcionales). Con los datos obligatorios usa 'proponer_alta_colaborador'. Solo un administrador puede confirmar altas.
+                     14. NUNCA muestres al usuario nombres internos de la base de datos ni de campos (por ejemplo collaborator, projects, first_name, last_name, estado, roles, tecnologias, start_contrato, jornadaId). Habla siempre como una persona: Nombre, Apellido, Puesto, Jornada, Fin de contrato.
+                     15. Contexto de la sesion: {user_context}. Si el usuario es manager, recordale amablemente que las altas de colaboradores y proyectos las confirma un administrador, y que solo puede modificar proyectos donde es Project Manager.
 
                     📋 **Colecciones principales:**
                      - 'collaborator': Colaboradores actuales del sistema
@@ -790,6 +830,9 @@ async def chat_endpoint(
                 {
                     "input": chat_request.query,
                     "chat_history": chat_request.chat_history or [],
+                    "user_context": (
+                        f"usuario {chat_request.user_name or 'sin nombre'} con rol {chat_request.user_role or 'desconocido'}"
+                    ),
                 }
             )
             final_answer = response.get("output", "No pude generar una respuesta.")
